@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.Diagnostics;
 
 namespace CubeSimulatorGUI
 {
@@ -126,6 +127,25 @@ namespace CubeSimulatorGUI
         private void btnReset_Click(object sender, EventArgs e)
         {
             mainCube.InitialiseCube();
+            UpdateFaces(mainCube.edges, mainCube.corners);
+            rtbScramble.Clear();
+        }
+
+        //Method to update the scramble on the page
+        private void UpdateScramble()
+        {
+            rtbScramble.Clear();
+            for (int i = 0; i < mainCube.scramble.Length; i++)
+            {
+                rtbScramble.AppendText(mainCube.scramble[i] + " ");
+            }
+        }
+
+        //Method to get scramble and display it
+        private void btnScramble_Click(object sender, EventArgs e)
+        {
+            mainCube.GetScramble();
+            UpdateScramble();
             UpdateFaces(mainCube.edges, mainCube.corners);
         }
     }

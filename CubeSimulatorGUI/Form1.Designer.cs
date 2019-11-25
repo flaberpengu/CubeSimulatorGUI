@@ -47,11 +47,14 @@
             this.btnInvL = new System.Windows.Forms.Button();
             this.btnInvF = new System.Windows.Forms.Button();
             this.btnReset = new System.Windows.Forms.Button();
+            this.rtbScramble = new System.Windows.Forms.RichTextBox();
+            this.label1 = new System.Windows.Forms.Label();
+            this.btnScramble = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // rtbBFace
             // 
-            this.rtbBFace.Location = new System.Drawing.Point(507, 181);
+            this.rtbBFace.Location = new System.Drawing.Point(507, 208);
             this.rtbBFace.Name = "rtbBFace";
             this.rtbBFace.ReadOnly = true;
             this.rtbBFace.Size = new System.Drawing.Size(98, 89);
@@ -60,7 +63,7 @@
             // 
             // rtbRFace
             // 
-            this.rtbRFace.Location = new System.Drawing.Point(403, 181);
+            this.rtbRFace.Location = new System.Drawing.Point(403, 208);
             this.rtbRFace.Name = "rtbRFace";
             this.rtbRFace.ReadOnly = true;
             this.rtbRFace.Size = new System.Drawing.Size(98, 89);
@@ -69,7 +72,7 @@
             // 
             // rtbLFace
             // 
-            this.rtbLFace.Location = new System.Drawing.Point(195, 181);
+            this.rtbLFace.Location = new System.Drawing.Point(195, 208);
             this.rtbLFace.Name = "rtbLFace";
             this.rtbLFace.ReadOnly = true;
             this.rtbLFace.Size = new System.Drawing.Size(98, 89);
@@ -78,7 +81,7 @@
             // 
             // rtbDFace
             // 
-            this.rtbDFace.Location = new System.Drawing.Point(299, 276);
+            this.rtbDFace.Location = new System.Drawing.Point(299, 303);
             this.rtbDFace.Name = "rtbDFace";
             this.rtbDFace.ReadOnly = true;
             this.rtbDFace.Size = new System.Drawing.Size(98, 89);
@@ -87,7 +90,7 @@
             // 
             // rtbFFace
             // 
-            this.rtbFFace.Location = new System.Drawing.Point(299, 181);
+            this.rtbFFace.Location = new System.Drawing.Point(299, 208);
             this.rtbFFace.Name = "rtbFFace";
             this.rtbFFace.ReadOnly = true;
             this.rtbFFace.Size = new System.Drawing.Size(98, 89);
@@ -96,7 +99,7 @@
             // 
             // rtbUFace
             // 
-            this.rtbUFace.Location = new System.Drawing.Point(299, 86);
+            this.rtbUFace.Location = new System.Drawing.Point(299, 113);
             this.rtbUFace.Name = "rtbUFace";
             this.rtbUFace.ReadOnly = true;
             this.rtbUFace.Size = new System.Drawing.Size(98, 89);
@@ -233,11 +236,42 @@
             this.btnReset.UseVisualStyleBackColor = true;
             this.btnReset.Click += new System.EventHandler(this.btnReset_Click);
             // 
+            // rtbScramble
+            // 
+            this.rtbScramble.Location = new System.Drawing.Point(197, 40);
+            this.rtbScramble.Name = "rtbScramble";
+            this.rtbScramble.ReadOnly = true;
+            this.rtbScramble.Size = new System.Drawing.Size(408, 38);
+            this.rtbScramble.TabIndex = 25;
+            this.rtbScramble.Text = "";
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(194, 19);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(91, 13);
+            this.label1.TabIndex = 26;
+            this.label1.Text = "Current Scramble:";
+            // 
+            // btnScramble
+            // 
+            this.btnScramble.Location = new System.Drawing.Point(611, 45);
+            this.btnScramble.Name = "btnScramble";
+            this.btnScramble.Size = new System.Drawing.Size(100, 25);
+            this.btnScramble.TabIndex = 27;
+            this.btnScramble.Text = "Get Scramble!";
+            this.btnScramble.UseVisualStyleBackColor = true;
+            this.btnScramble.Click += new System.EventHandler(this.btnScramble_Click);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
+            this.Controls.Add(this.btnScramble);
+            this.Controls.Add(this.label1);
+            this.Controls.Add(this.rtbScramble);
             this.Controls.Add(this.btnReset);
             this.Controls.Add(this.btnInvB);
             this.Controls.Add(this.btnInvD);
@@ -260,6 +294,7 @@
             this.Name = "Form1";
             this.Text = "Form1";
             this.ResumeLayout(false);
+            this.PerformLayout();
 
         }
 
@@ -284,6 +319,9 @@
         private System.Windows.Forms.Button btnInvL;
         private System.Windows.Forms.Button btnInvF;
         private System.Windows.Forms.Button btnReset;
+        private System.Windows.Forms.RichTextBox rtbScramble;
+        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Button btnScramble;
     }
 }
 

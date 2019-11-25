@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Forms;
 
 namespace CubeSimulatorGUI
 {
@@ -10,6 +11,7 @@ namespace CubeSimulatorGUI
     {
         public string[][] edges;
         public string[][] corners;
+        public string[] scramble;
         public void InitialiseCube()
         {
             /*Layout of edges and indexing:
@@ -145,6 +147,79 @@ namespace CubeSimulatorGUI
         {
             edges = InverseMoves.BEdges(edges);
             corners = InverseMoves.BCorners(corners);
+        }
+
+        //Method to get and apply a random scramble to the cube
+        public void GetScramble()
+        {
+            Scramble scrmbl = new Scramble();
+            scramble = scrmbl.GenerateScramble();
+            foreach (string s in scramble)
+            {
+                switch (s)
+                {
+                    case "R":
+                        RegularR();
+                        continue;
+                    case "R'":
+                        InverseR();
+                        continue;
+                    case "R2":
+                        RegularR();
+                        RegularR();
+                        continue;
+                    case "L":
+                        RegularL();
+                        continue;
+                    case "L'":
+                        InverseL();
+                        continue;
+                    case "L2":
+                        RegularL();
+                        RegularL();
+                        continue;
+                    case "U":
+                        RegularU();
+                        continue;
+                    case "U'":
+                        InverseU();
+                        continue;
+                    case "U2":
+                        RegularU();
+                        RegularU();
+                        continue;
+                    case "F":
+                        RegularF();
+                        continue;
+                    case "F'":
+                        InverseF();
+                        continue;
+                    case "F2":
+                        RegularF();
+                        RegularF();
+                        continue;
+                    case "D":
+                        RegularD();
+                        continue;
+                    case "D'":
+                        InverseD();
+                        continue;
+                    case "D2":
+                        RegularD();
+                        RegularD();
+                        continue;
+                    case "B":
+                        RegularB();
+                        continue;
+                    case "B'":
+                        InverseB();
+                        continue;
+                    case "B2":
+                        RegularB();
+                        RegularB();
+                        continue;
+                }
+            }
         }
     }
 }
