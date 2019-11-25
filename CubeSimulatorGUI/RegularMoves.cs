@@ -22,25 +22,11 @@ namespace CubeSimulatorGUI
             temp[3] = new string[2];
             Array.Copy(edges[5], temp[3], 2);
 
-            //Test printing before
-            for (int i = 0; i < temp.Length; i++)
-            {
-                for (int j = 0; j < temp[i].Length; j++)
-                {
-                    Console.Write(temp[i][j]);
-                }
-                Console.Write("\n");
-            }
-            Console.WriteLine("\n");
-
             //Copy edges into new places
             Array.Copy(temp[0], edges[4], 2);
             Array.Copy(temp[1], edges[9], 2);
             Array.Copy(temp[2], edges[5], 2);
             Array.Copy(temp[3], edges[1], 2);
-
-            //Test printing after
-            Console.Write(edges[1][0] + edges[1][1] + "\n" + edges[4][0] + edges[4][1] + "\n" + edges[9][0] + edges[9][1] + "\n" + edges[5][0] + edges[5][1] + "\n");
 
             //Return edited array
             return edges;
@@ -59,16 +45,6 @@ namespace CubeSimulatorGUI
             Array.Copy(corners[5], temp[2], 3);
             temp[3] = new string[3];
             Array.Copy(corners[6], temp[3], 3);
-
-            //Test printing before
-            for (int i = 0; i < temp.Length; i++)
-            {
-                for (int j = 0; j < temp[i].Length; j++)
-                {
-                    Console.Write(temp[i][j]);
-                }
-                Console.Write("\n");
-            }
 
             //Sort corner rotations
             for (int i = 0; i < temp.Length; i++)
@@ -96,9 +72,6 @@ namespace CubeSimulatorGUI
             Array.Copy(temp[2], corners[6], 3);
             Array.Copy(temp[3], corners[2], 3);
 
-            //Test printing after
-            Console.Write(corners[2][0] + corners[2][1] + corners[2][2] + "\n" + corners[1][0] + corners[1][1] + corners[1][2] + "\n" + corners[5][0] + corners[5][1] + corners[5][2] + "\n" + corners[6][0] + corners[6][1] + corners[6][2] + "\n");
-
             //Return edited array
             return corners;
         }
@@ -117,24 +90,11 @@ namespace CubeSimulatorGUI
             temp[3] = new string[2];
             Array.Copy(edges[7], temp[3], 2);
 
-            //Test printing before
-            for (int i = 0; i < temp.Length; i++)
-            {
-                for (int j = 0; j < temp[i].Length; j++)
-                {
-                    Console.Write(temp[i][j]);
-                }
-                Console.Write("\n");
-            }
-
             //Copy edges into new places
             Array.Copy(temp[0], edges[6], 2);
             Array.Copy(temp[1], edges[11], 2);
             Array.Copy(temp[2], edges[7], 2);
             Array.Copy(temp[3], edges[3], 2);
-
-            //Test printing after
-            Console.Write(edges[3][0] + edges[3][1] + "\n" + edges[6][0] + edges[6][1] + "\n" + edges[11][0] + edges[11][1] + "\n" + edges[7][0] + edges[7][1] + "\n");
 
             //Return edited array
             return edges;
@@ -153,16 +113,6 @@ namespace CubeSimulatorGUI
             Array.Copy(corners[7], temp[2], 3);
             temp[3] = new string[3];
             Array.Copy(corners[4], temp[3], 3);
-
-            //Test printing before
-            for (int i = 0; i < temp.Length; i++)
-            {
-                for (int j = 0; j < temp[i].Length; j++)
-                {
-                    Console.Write(temp[i][j]);
-                }
-                Console.Write("\n");
-            }
 
             //Sort corner rotations
             for (int i = 0; i < temp.Length; i++)
@@ -190,9 +140,6 @@ namespace CubeSimulatorGUI
             Array.Copy(temp[2], corners[4], 3);
             Array.Copy(temp[3], corners[0], 3);
 
-            //Test printing after
-            Console.Write(corners[0][0] + corners[0][1] + corners[0][2] + "\n" + corners[3][0] + corners[3][1] + corners[3][2] + "\n" + corners[7][0] + corners[7][1] + corners[7][2] + "\n" + corners[4][0] + corners[4][1] + corners[4][2] + "\n");
-
             //Return edited array
             return corners;
         }
@@ -211,25 +158,11 @@ namespace CubeSimulatorGUI
             temp[3] = new string[2];
             Array.Copy(edges[3], temp[3], 2);
 
-            //Test printing before
-            for (int i = 0; i < temp.Length; i++)
-            {
-                for (int j = 0; j < temp[i].Length; j++)
-                {
-                    Console.Write(temp[i][j]);
-                }
-                Console.Write("\n");
-            }
-            Console.WriteLine("\n");
-
             //Copy edges into new places
             Array.Copy(temp[0], edges[1], 2);
             Array.Copy(temp[1], edges[2], 2);
             Array.Copy(temp[2], edges[3], 2);
             Array.Copy(temp[3], edges[0], 2);
-
-            //Test printing after
-            Console.Write(edges[0][0] + edges[0][1] + "\n" + edges[1][0] + edges[1][1] + "\n" + edges[2][0] + edges[2][1] + "\n" + edges[3][0] + edges[3][1] + "\n");
 
             //Return edited array of edges
             return edges;
@@ -249,24 +182,11 @@ namespace CubeSimulatorGUI
             temp[3] = new string[3];
             Array.Copy(corners[3], temp[3], 3);
 
-            //Test printing before
-            for (int i = 0; i < temp.Length; i++)
-            {
-                for (int j = 0; j < temp[i].Length; j++)
-                {
-                    Console.Write(temp[i][j]);
-                }
-                Console.Write("\n");
-            }
-
             //Copy corners into new places
             Array.Copy(temp[0], corners[1], 3);
             Array.Copy(temp[1], corners[2], 3);
             Array.Copy(temp[2], corners[3], 3);
             Array.Copy(temp[3], corners[0], 3);
-
-            //Test printing after
-            Console.Write(corners[0][0] + corners[0][1] + corners[0][2] + "\n" + corners[1][0] + corners[1][1] + corners[1][2] + "\n" + corners[2][0] + corners[2][1] + corners[2][2] + "\n" + corners[3][0] + corners[3][1] + corners[3][2] + "\n");
 
             //Return edited array
             return corners;
@@ -286,25 +206,11 @@ namespace CubeSimulatorGUI
             temp[3] = new string[2];
             Array.Copy(edges[11], temp[3], 2);
 
-            //Test printing before
-            for (int i = 0; i < temp.Length; i++)
-            {
-                for (int j = 0; j < temp[i].Length; j++)
-                {
-                    Console.Write(temp[i][j]);
-                }
-                Console.Write("\n");
-            }
-            Console.WriteLine("\n");
-
             //Copy edges into new places
             Array.Copy(temp[0], edges[9], 2);
             Array.Copy(temp[1], edges[10], 2);
             Array.Copy(temp[2], edges[11], 2);
             Array.Copy(temp[3], edges[8], 2);
-
-            //Test printing after
-            Console.Write(edges[8][0] + edges[8][1] + "\n" + edges[9][0] + edges[9][1] + "\n" + edges[10][0] + edges[10][1] + "\n" + edges[11][0] + edges[11][1] + "\n");
 
             //Return edited array of edges
             return edges;
@@ -324,24 +230,11 @@ namespace CubeSimulatorGUI
             temp[3] = new string[3];
             Array.Copy(corners[7], temp[3], 3);
 
-            //Test printing before
-            for (int i = 0; i < temp.Length; i++)
-            {
-                for (int j = 0; j < temp[i].Length; j++)
-                {
-                    Console.Write(temp[i][j]);
-                }
-                Console.Write("\n");
-            }
-
             //Copy corners into new places
             Array.Copy(temp[0], corners[5], 3);
             Array.Copy(temp[1], corners[6], 3);
             Array.Copy(temp[2], corners[7], 3);
             Array.Copy(temp[3], corners[4], 3);
-
-            //Test printing after
-            Console.Write(corners[4][0] + corners[4][1] + corners[4][2] + "\n" + corners[5][0] + corners[5][1] + corners[5][2] + "\n" + corners[6][0] + corners[6][1] + corners[6][2] + "\n" + corners[7][0] + corners[7][1] + corners[7][2] + "\n");
 
             //Return edited array
             return corners;
@@ -361,17 +254,6 @@ namespace CubeSimulatorGUI
             temp[3] = new string[2];
             Array.Copy(edges[6], temp[3], 2);
 
-            //Test printing before
-            for (int i = 0; i < temp.Length; i++)
-            {
-                for (int j = 0; j < temp[i].Length; j++)
-                {
-                    Console.Write(temp[i][j]);
-                }
-                Console.Write("\n");
-            }
-            Console.WriteLine("\n");
-
             //Flip each edge
             for (int i = 0; i < temp.Length; i++)
             {
@@ -386,9 +268,6 @@ namespace CubeSimulatorGUI
             Array.Copy(temp[1], edges[10], 2);
             Array.Copy(temp[2], edges[6], 2);
             Array.Copy(temp[3], edges[2], 2);
-
-            //Test printing after
-            Console.Write(edges[2][0] + edges[2][1] + "\n" + edges[5][0] + edges[5][1] + "\n" + edges[10][0] + edges[10][1] + "\n" + edges[6][0] + edges[6][1] + "\n");
 
             //Return edited array of edges
             return edges;
@@ -407,16 +286,6 @@ namespace CubeSimulatorGUI
             Array.Copy(corners[6], temp[2], 3);
             temp[3] = new string[3];
             Array.Copy(corners[7], temp[3], 3);
-
-            //Test printing before
-            for (int i = 0; i < temp.Length; i++)
-            {
-                for (int j = 0; j < temp[i].Length; j++)
-                {
-                    Console.Write(temp[i][j]);
-                }
-                Console.Write("\n");
-            }
 
             //Sort corner rotations
             for (int i = 0; i < temp.Length; i++)
@@ -444,9 +313,6 @@ namespace CubeSimulatorGUI
             Array.Copy(temp[2], corners[7], 3);
             Array.Copy(temp[3], corners[3], 3);
 
-            //Test printing after
-            Console.Write(corners[3][0] + corners[3][1] + corners[3][2] + "\n" + corners[2][0] + corners[2][1] + corners[2][2] + "\n" + corners[6][0] + corners[6][1] + corners[6][2] + "\n" + corners[7][0] + corners[7][1] + corners[7][2] + "\n");
-
             //Return edited array
             return corners;
         }
@@ -465,17 +331,6 @@ namespace CubeSimulatorGUI
             temp[3] = new string[2];
             Array.Copy(edges[4], temp[3], 2);
 
-            //Test printing before
-            for (int i = 0; i < temp.Length; i++)
-            {
-                for (int j = 0; j < temp[i].Length; j++)
-                {
-                    Console.Write(temp[i][j]);
-                }
-                Console.Write("\n");
-            }
-            Console.WriteLine("\n");
-
             //Flip each edge
             for (int i = 0; i < temp.Length; i++)
             {
@@ -490,9 +345,6 @@ namespace CubeSimulatorGUI
             Array.Copy(temp[1], edges[8], 2);
             Array.Copy(temp[2], edges[4], 2);
             Array.Copy(temp[3], edges[0], 2);
-
-            //Test printing after
-            Console.Write(edges[0][0] + edges[0][1] + "\n" + edges[7][0] + edges[7][1] + "\n" + edges[8][0] + edges[8][1] + "\n" + edges[4][0] + edges[4][1] + "\n");
 
             //Return edited array of edges
             return edges;
@@ -511,16 +363,6 @@ namespace CubeSimulatorGUI
             Array.Copy(corners[4], temp[2], 3);
             temp[3] = new string[3];
             Array.Copy(corners[5], temp[3], 3);
-
-            //Test printing before
-            for (int i = 0; i < temp.Length; i++)
-            {
-                for (int j = 0; j < temp[i].Length; j++)
-                {
-                    Console.Write(temp[i][j]);
-                }
-                Console.Write("\n");
-            }
 
             //Sort corner rotations
             for (int i = 0; i < temp.Length; i++)
@@ -547,9 +389,6 @@ namespace CubeSimulatorGUI
             Array.Copy(temp[1], corners[4], 3);
             Array.Copy(temp[2], corners[5], 3);
             Array.Copy(temp[3], corners[1], 3);
-
-            //Test printing after
-            Console.Write(corners[1][0] + corners[1][1] + corners[1][2] + "\n" + corners[0][0] + corners[0][1] + corners[0][2] + "\n" + corners[4][0] + corners[4][1] + corners[4][2] + "\n" + corners[5][0] + corners[5][1] + corners[5][2] + "\n");
 
             //Return edited array
             return corners;
