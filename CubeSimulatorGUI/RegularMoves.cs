@@ -33,47 +33,63 @@ namespace CubeSimulatorGUI
         }
 
         //Method to rotate corners during R move; takes in and returns jagged array of corners
-        static public string[][] RCorners(string[][] corners)
+        static public Corner[] RCorners(Corner[] corners)
         {
+            //Rotate corners
+            corners[2].IncrementFaces();
+            corners[1].DecrementFaces();
+            corners[5].IncrementFaces();
+            corners[6].DecrementFaces();
+
+            //Move corners
+            Corner temp = corners[1];
+            corners[1] = corners[2];
+            Corner temp2 = corners[5];
+            corners[5] = temp;
+            temp = corners[6];
+            corners[6] = temp2;
+            corners[2] = temp;
+
+            //Return array
+            return corners;
+
+            /*
+
+
             //Temp copies corners, starts at UFR, clockwise (facing R side)
             string[][] temp = new string[4][];
             temp[0] = new string[3];
-            Array.Copy(corners[2], temp[0], 3);
+            Array.Copy(corners[2].faces, temp[0], 3);
             temp[1] = new string[3];
-            Array.Copy(corners[1], temp[1], 3);
+            Array.Copy(corners[1].faces, temp[1], 3);
             temp[2] = new string[3];
-            Array.Copy(corners[5], temp[2], 3);
+            Array.Copy(corners[5].faces, temp[2], 3);
             temp[3] = new string[3];
-            Array.Copy(corners[6], temp[3], 3);
+            Array.Copy(corners[6].faces, temp[3], 3);
 
             //Sort corner rotations
             for (int i = 0; i < temp.Length; i++)
             {
                 //temp corners 0 and 2 increment, 1 and 3 decrement
-                string[] temp2 = new string[3];
                 if (i == 0 || i == 2)
                 {
-                    temp2[0] = temp[i][2];
-                    temp2[1] = temp[i][0];
-                    temp2[2] = temp[i][1];
+                    temp[i].IncrementFaces();
                 }
                 else
                 {
-                    temp2[0] = temp[i][1];
-                    temp2[1] = temp[i][2];
-                    temp2[2] = temp[i][0];
+                    temp[i].DecrementFaces();
                 }
-                Array.Copy(temp2, temp[i], 3);
             }
 
             //Copy corners into new places
-            Array.Copy(temp[0], corners[1], 3);
-            Array.Copy(temp[1], corners[5], 3);
-            Array.Copy(temp[2], corners[6], 3);
-            Array.Copy(temp[3], corners[2], 3);
+            Array.Copy(temp[0], corners[1].faces, 3);
+            Array.Copy(temp[1], corners[5].faces, 3);
+            Array.Copy(temp[2], corners[6].faces, 3);
+            Array.Copy(temp[3], corners[2].faces, 3);
 
             //Return edited array
             return corners;
+            */
         }
 
         //Method to rotate edges during L move; takes in and returns jagged array of edges
@@ -101,47 +117,61 @@ namespace CubeSimulatorGUI
         }
 
         //Method to rotate corners during L move; takes in and returns jagged array of corners
-        static public string[][] LCorners(string[][] corners)
+        static public Corner[] LCorners(Corner[] corners)
         {
+            //Rotate corners
+            corners[0].IncrementFaces();
+            corners[3].DecrementFaces();
+            corners[7].IncrementFaces();
+            corners[4].DecrementFaces();
+
+            //Move corners
+            Corner temp = corners[3];
+            corners[3] = corners[0];
+            Corner temp2 = corners[7];
+            corners[7] = temp;
+            temp = corners[4];
+            corners[4] = temp2;
+            corners[0] = temp;
+
+            //Return array
+            return corners;
+            
+            /*
             //Temp copies corners, starts at UBL, clockwise (facing L face)
             string[][] temp = new string[4][];
             temp[0] = new string[3];
-            Array.Copy(corners[0], temp[0], 3);
+            Array.Copy(corners[0].faces, temp[0], 3);
             temp[1] = new string[3];
-            Array.Copy(corners[3], temp[1], 3);
+            Array.Copy(corners[3].faces, temp[1], 3);
             temp[2] = new string[3];
-            Array.Copy(corners[7], temp[2], 3);
+            Array.Copy(corners[7].faces, temp[2], 3);
             temp[3] = new string[3];
-            Array.Copy(corners[4], temp[3], 3);
+            Array.Copy(corners[4].faces, temp[3], 3);
 
             //Sort corner rotations
             for (int i = 0; i < temp.Length; i++)
             {
                 //temp corners 0 and 2 increment, 1 and 3 decrement
-                string[] temp2 = new string[3];
                 if (i == 0 || i == 2)
                 {
-                    temp2[0] = temp[i][2];
-                    temp2[1] = temp[i][0];
-                    temp2[2] = temp[i][1];
+                    corners[i].IncrementFaces();
                 }
                 else
                 {
-                    temp2[0] = temp[i][1];
-                    temp2[1] = temp[i][2];
-                    temp2[2] = temp[i][0];
+                    corners[i].DecrementFaces();
                 }
-                Array.Copy(temp2, temp[i], 3);
             }
 
             //Copy corners into new places
-            Array.Copy(temp[0], corners[3], 3);
-            Array.Copy(temp[1], corners[7], 3);
-            Array.Copy(temp[2], corners[4], 3);
-            Array.Copy(temp[3], corners[0], 3);
+            Array.Copy(temp[0], corners[3].faces, 3);
+            Array.Copy(temp[1], corners[7].faces, 3);
+            Array.Copy(temp[2], corners[4].faces, 3);
+            Array.Copy(temp[3], corners[0].faces, 3);
 
             //Return edited array
             return corners;
+            */
         }
 
         //Method to rotate edges during U move; takes in and returns jagged array of edges
@@ -169,27 +199,41 @@ namespace CubeSimulatorGUI
         }
 
         //Method to rotate corners during U move; takes in and returns jagged array of corners
-        static public string[][] UCorners(string[][] corners)
+        static public Corner[] UCorners(Corner[] corners)
         {
+            //Move corners
+            Corner temp = corners[1];
+            corners[1] = corners[0];
+            Corner temp2 = corners[2];
+            corners[2] = temp;
+            temp = corners[3];
+            corners[3] = temp2;
+            corners[0] = temp;
+
+            //Return array
+            return corners;
+
+            /*
             //Temp copies corners, starts at UBL, clockwise (facing U face)
             string[][] temp = new string[4][];
             temp[0] = new string[3];
-            Array.Copy(corners[0], temp[0], 3);
+            Array.Copy(corners[0].faces, temp[0], 3);
             temp[1] = new string[3];
-            Array.Copy(corners[1], temp[1], 3);
+            Array.Copy(corners[1].faces, temp[1], 3);
             temp[2] = new string[3];
-            Array.Copy(corners[2], temp[2], 3);
+            Array.Copy(corners[2].faces, temp[2], 3);
             temp[3] = new string[3];
-            Array.Copy(corners[3], temp[3], 3);
+            Array.Copy(corners[3].faces, temp[3], 3);
 
             //Copy corners into new places
-            Array.Copy(temp[0], corners[1], 3);
-            Array.Copy(temp[1], corners[2], 3);
-            Array.Copy(temp[2], corners[3], 3);
-            Array.Copy(temp[3], corners[0], 3);
+            Array.Copy(temp[0], corners[1].faces, 3);
+            Array.Copy(temp[1], corners[2].faces, 3);
+            Array.Copy(temp[2], corners[3].faces, 3);
+            Array.Copy(temp[3], corners[0].faces, 3);
 
             //Return edited array
             return corners;
+            */
         }
 
         //Method to rotate edges during D move; takes in and returns jagged array of edges
@@ -217,27 +261,41 @@ namespace CubeSimulatorGUI
         }
 
         //Method to rotate corners during D move; takes in and returns jagged array of corners
-        static public string[][] DCorners(string[][] corners)
+        static public Corner[] DCorners(Corner[] corners)
         {
+            //Move corners
+            Corner temp = corners[5];
+            corners[5] = corners[4];
+            Corner temp2 = corners[6];
+            corners[6] = temp;
+            temp = corners[7];
+            corners[7] = temp2;
+            corners[4] = temp;
+
+            //Return array
+            return corners;
+            
+            /*
             //Temp copies corners, starts at DBL, clockwise (facing D face)
             string[][] temp = new string[4][];
             temp[0] = new string[3];
-            Array.Copy(corners[4], temp[0], 3);
+            Array.Copy(corners[4].faces, temp[0], 3);
             temp[1] = new string[3];
-            Array.Copy(corners[5], temp[1], 3);
+            Array.Copy(corners[5].faces, temp[1], 3);
             temp[2] = new string[3];
-            Array.Copy(corners[6], temp[2], 3);
+            Array.Copy(corners[6].faces, temp[2], 3);
             temp[3] = new string[3];
-            Array.Copy(corners[7], temp[3], 3);
+            Array.Copy(corners[7].faces, temp[3], 3);
 
             //Copy corners into new places
-            Array.Copy(temp[0], corners[5], 3);
-            Array.Copy(temp[1], corners[6], 3);
-            Array.Copy(temp[2], corners[7], 3);
-            Array.Copy(temp[3], corners[4], 3);
+            Array.Copy(temp[0], corners[5].faces, 3);
+            Array.Copy(temp[1], corners[6].faces, 3);
+            Array.Copy(temp[2], corners[7].faces, 3);
+            Array.Copy(temp[3], corners[4].faces, 3);
 
             //Return edited array
             return corners;
+            */
         }
 
         //Method to rotate edges during F move; takes in and returns jagged array of corners
@@ -274,47 +332,61 @@ namespace CubeSimulatorGUI
         }
 
         //Method to rotate corners during F move; takes in and returns jagged array of corners
-        static public string[][] FCorners(string[][] corners)
+        static public Corner[] FCorners(Corner[] corners)
         {
+            //Rotate corners
+            corners[3].IncrementFaces();
+            corners[2].DecrementFaces();
+            corners[6].IncrementFaces();
+            corners[7].DecrementFaces();
+
+            //Move corners
+            Corner temp = corners[2];
+            corners[2] = corners[3];
+            Corner temp2 = corners[6];
+            corners[6] = temp;
+            temp = corners[7];
+            corners[7] = temp2;
+            corners[3] = temp;
+
+            //Return array
+            return corners;
+
+            /*
             //Temp copies corners, starts at UFL, clockwise (facing F face)
             string[][] temp = new string[4][];
             temp[0] = new string[3];
-            Array.Copy(corners[3], temp[0], 3);
+            Array.Copy(corners[3].faces, temp[0], 3);
             temp[1] = new string[3];
-            Array.Copy(corners[2], temp[1], 3);
+            Array.Copy(corners[2].faces, temp[1], 3);
             temp[2] = new string[3];
-            Array.Copy(corners[6], temp[2], 3);
+            Array.Copy(corners[6].faces, temp[2], 3);
             temp[3] = new string[3];
-            Array.Copy(corners[7], temp[3], 3);
+            Array.Copy(corners[7].faces, temp[3], 3);
 
             //Sort corner rotations
             for (int i = 0; i < temp.Length; i++)
             {
                 //temp corners 0 and 2 increment, 1 and 3 decrement
-                string[] temp2 = new string[3];
                 if (i == 0 || i == 2)
                 {
-                    temp2[0] = temp[i][2];
-                    temp2[1] = temp[i][0];
-                    temp2[2] = temp[i][1];
+                    corners[i].IncrementFaces();
                 }
                 else
                 {
-                    temp2[0] = temp[i][1];
-                    temp2[1] = temp[i][2];
-                    temp2[2] = temp[i][0];
+                    corners[i].DecrementFaces();
                 }
-                Array.Copy(temp2, temp[i], 3);
             }
 
             //Copy corners into new places
-            Array.Copy(temp[0], corners[2], 3);
-            Array.Copy(temp[1], corners[6], 3);
-            Array.Copy(temp[2], corners[7], 3);
-            Array.Copy(temp[3], corners[3], 3);
+            Array.Copy(temp[0], corners[2].faces, 3);
+            Array.Copy(temp[1], corners[6].faces, 3);
+            Array.Copy(temp[2], corners[7].faces, 3);
+            Array.Copy(temp[3], corners[3].faces, 3);
 
             //Return edited array
             return corners;
+            */
         }
 
         //Method to rotate edges during B move; takes in and returns jagged array of corners
@@ -351,47 +423,61 @@ namespace CubeSimulatorGUI
         }
 
         //Method to rotate corners during B move; takes in and returns jagged array of corners
-        static public string[][] BCorners(string[][] corners)
+        static public Corner[] BCorners(Corner[] corners)
         {
+            //Rotate corners
+            corners[1].IncrementFaces();
+            corners[0].DecrementFaces();
+            corners[4].IncrementFaces();
+            corners[5].DecrementFaces();
+
+            //Move corners
+            Corner temp = corners[0];
+            corners[0] = corners[1];
+            Corner temp2 = corners[4];
+            corners[4] = temp;
+            temp = corners[5];
+            corners[5] = temp2;
+            corners[1] = temp;
+
+            //Return array
+            return corners;
+
+            /*
             //Temp copies corners, starts at UBR, clockwise (facing B face)
             string[][] temp = new string[4][];
             temp[0] = new string[3];
-            Array.Copy(corners[1], temp[0], 3);
+            Array.Copy(corners[1].faces, temp[0], 3);
             temp[1] = new string[3];
-            Array.Copy(corners[0], temp[1], 3);
+            Array.Copy(corners[0].faces, temp[1], 3);
             temp[2] = new string[3];
-            Array.Copy(corners[4], temp[2], 3);
+            Array.Copy(corners[4].faces, temp[2], 3);
             temp[3] = new string[3];
-            Array.Copy(corners[5], temp[3], 3);
+            Array.Copy(corners[5].faces, temp[3], 3);
 
             //Sort corner rotations
             for (int i = 0; i < temp.Length; i++)
             {
                 //temp corners 0 and 2 increment, 1 and 3 decrement
-                string[] temp2 = new string[3];
                 if (i == 0 || i == 2)
                 {
-                    temp2[0] = temp[i][2];
-                    temp2[1] = temp[i][0];
-                    temp2[2] = temp[i][1];
+                    corners[i].IncrementFaces();
                 }
                 else
                 {
-                    temp2[0] = temp[i][1];
-                    temp2[1] = temp[i][2];
-                    temp2[2] = temp[i][0];
+                    corners[i].DecrementFaces();
                 }
-                Array.Copy(temp2, temp[i], 3);
             }
 
             //Copy corners into new places
-            Array.Copy(temp[0], corners[0], 3);
-            Array.Copy(temp[1], corners[4], 3);
-            Array.Copy(temp[2], corners[5], 3);
-            Array.Copy(temp[3], corners[1], 3);
+            Array.Copy(temp[0], corners[0].faces, 3);
+            Array.Copy(temp[1], corners[4].faces, 3);
+            Array.Copy(temp[2], corners[5].faces, 3);
+            Array.Copy(temp[3], corners[1].faces, 3);
 
             //Return edited array
             return corners;
+            */
         }
     }
 }

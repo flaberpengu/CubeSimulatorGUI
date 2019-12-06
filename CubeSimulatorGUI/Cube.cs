@@ -10,7 +10,7 @@ namespace CubeSimulatorGUI
     class Cube
     {
         public string[][] edges;
-        public string[][] corners;
+        public Corner[] corners;
         public string[] scramble;
         public void InitialiseCube()
         {
@@ -54,7 +54,16 @@ namespace CubeSimulatorGUI
             edges[9] = new string[2] { "Y", "R" };
             edges[10] = new string[2] { "Y", "G" };
             edges[11] = new string[2] { "Y", "O" };
-            corners = new string[8][];
+            corners = new Corner[8];
+            corners[0] = new Corner("W", "O", "B");
+            corners[1] = new Corner("W", "B", "R");
+            corners[2] = new Corner("W", "R", "G");
+            corners[3] = new Corner("W", "G", "O");
+            corners[4] = new Corner("Y", "B", "O");
+            corners[5] = new Corner("Y", "R", "B");
+            corners[6] = new Corner("Y", "G", "R");
+            corners[7] = new Corner("Y", "O", "G");
+            /*corners = new string[8][];
             corners[0] = new string[3] { "W", "O", "B" };
             corners[1] = new string[3] { "W", "B", "R" };
             corners[2] = new string[3] { "W", "R", "G" };
@@ -63,6 +72,7 @@ namespace CubeSimulatorGUI
             corners[5] = new string[3] { "Y", "R", "B" };
             corners[6] = new string[3] { "Y", "G", "R" };
             corners[7] = new string[3] { "Y", "O", "G" };
+            */
         }
 
         //Method to do an R rotation
