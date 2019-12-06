@@ -35,6 +35,25 @@ namespace CubeSimulatorGUI
         //Method to rotate corners during R' move; takes in and returns jagged array of corners
         static public Corner[] RCorners(Corner[] corners)
         {
+            //Rotate corners
+            corners[2].IncrementFaces();
+            corners[1].DecrementFaces();
+            corners[5].IncrementFaces();
+            corners[6].DecrementFaces();
+
+            //Move corners
+            Corner temp = corners[2];
+            corners[2] = corners[1];
+            Corner temp2 = corners[6];
+            corners[6] = temp;
+            temp = corners[5];
+            corners[5] = temp2;
+            corners[1] = temp;
+
+            //Return array
+            return corners;
+
+            /*
             //Temp copies corners, starts at UFR, clockwise (facing R side)
             string[][] temp = new string[4][];
             temp[0] = new string[3];
@@ -74,6 +93,7 @@ namespace CubeSimulatorGUI
 
             //Return edited array
             return corners;
+            */
         }
 
         //Method to rotate edges during L' move; takes in and returns jagged array of edges
@@ -103,6 +123,25 @@ namespace CubeSimulatorGUI
         //Method to rotate corners during L' move; takes in and returns jagged array of corners
         static public Corner[] LCorners(Corner[] corners)
         {
+            //Rotate corners
+            corners[0].IncrementFaces();
+            corners[3].DecrementFaces();
+            corners[7].IncrementFaces();
+            corners[4].DecrementFaces();
+
+            //Move corners
+            Corner temp = corners[0];
+            corners[0] = corners[3];
+            Corner temp2 = corners[4];
+            corners[4] = temp;
+            temp = corners[7];
+            corners[7] = temp2;
+            corners[3] = temp;
+
+            //Return array
+            return corners;
+
+            /*
             //Temp copies corners, starts at UBL, clockwise (facing L face)
             string[][] temp = new string[4][];
             temp[0] = new string[3];
@@ -142,6 +181,7 @@ namespace CubeSimulatorGUI
 
             //Return edited array
             return corners;
+            */
         }
 
         //Method to rotate edges during U' move; takes in and returns jagged array of edges
@@ -171,6 +211,19 @@ namespace CubeSimulatorGUI
         //Method to rotate corners during U' move; takes in and returns jagged array of corners
         static public Corner[] UCorners(Corner[] corners)
         {
+            //Move corners
+            Corner temp = corners[0];
+            corners[0] = corners[1];
+            Corner temp2 = corners[3];
+            corners[3] = temp;
+            temp = corners[2];
+            corners[2] = temp2;
+            corners[1] = temp;
+
+            //Return array
+            return corners;
+
+            /*
             //Temp copies corners, starts at UBL, clockwise (facing U face)
             string[][] temp = new string[4][];
             temp[0] = new string[3];
@@ -190,6 +243,7 @@ namespace CubeSimulatorGUI
 
             //Return edited array
             return corners;
+            */
         }
 
         //Method to rotate edges during D' move; takes in and returns jagged array of edges
@@ -219,6 +273,19 @@ namespace CubeSimulatorGUI
         //Method to rotate corners during D' move; takes in and returns jagged array of corners
         static public Corner[] DCorners(Corner[] corners)
         {
+            //Move corners
+            Corner temp = corners[4];
+            corners[4] = corners[5];
+            Corner temp2 = corners[7];
+            corners[7] = temp;
+            temp = corners[6];
+            corners[6] = temp2;
+            corners[5] = temp;
+
+            //Return array
+            return corners;
+
+            /*
             //Temp copies corners, starts at DBL, clockwise (facing D face)
             string[][] temp = new string[4][];
             temp[0] = new string[3];
@@ -238,6 +305,7 @@ namespace CubeSimulatorGUI
 
             //Return edited array
             return corners;
+            */
         }
 
         //Method to rotate edges during F' move; takes in and returns jagged array of corners
@@ -276,6 +344,25 @@ namespace CubeSimulatorGUI
         //Method to rotate corners during F' move; takes in and returns jagged array of corners
         static public Corner[] FCorners(Corner[] corners)
         {
+            //Rotate corners
+            corners[3].IncrementFaces();
+            corners[2].DecrementFaces();
+            corners[6].IncrementFaces();
+            corners[7].DecrementFaces();
+
+            //Move corners
+            Corner temp = corners[3];
+            corners[3] = corners[2];
+            Corner temp2 = corners[7];
+            corners[7] = temp;
+            temp = corners[6];
+            corners[6] = temp2;
+            corners[2] = temp;
+
+            //Return array
+            return corners;
+
+            /*
             //Temp copies corners, starts at UFL, clockwise (facing F face)
             string[][] temp = new string[4][];
             temp[0] = new string[3];
@@ -315,6 +402,7 @@ namespace CubeSimulatorGUI
 
             //Return edited array
             return corners;
+            */
         }
 
         //Method to rotate edges during B' move; takes in and returns jagged array of corners
@@ -353,6 +441,25 @@ namespace CubeSimulatorGUI
         //Method to rotate corners during B' move; takes in and returns jagged array of corners
         static public Corner[] BCorners(Corner[] corners)
         {
+            //Rotate corners
+            corners[1].IncrementFaces();
+            corners[0].DecrementFaces();
+            corners[4].IncrementFaces();
+            corners[5].DecrementFaces();
+
+            //Move corners
+            Corner temp = corners[1];
+            corners[1] = corners[0];
+            Corner temp2 = corners[5];
+            corners[5] = temp;
+            temp = corners[4];
+            corners[4] = temp2;
+            corners[0] = temp;
+
+            //Return array
+            return corners;
+
+            /*
             //Temp copies corners, starts at UBR, clockwise (facing B face)
             string[][] temp = new string[4][];
             temp[0] = new string[3];
@@ -392,6 +499,7 @@ namespace CubeSimulatorGUI
 
             //Return edited array
             return corners;
+            */
         }
     }
 }
