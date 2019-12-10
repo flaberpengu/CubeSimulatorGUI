@@ -9,7 +9,7 @@ namespace CubeSimulatorGUI
 {
     class Cube
     {
-        public string[][] edges;
+        public Edge[] edges;
         public Corner[] corners;
         public string[] scramble;
         public void InitialiseCube()
@@ -41,19 +41,19 @@ namespace CubeSimulatorGUI
             //Always assume U = White, F = Green, R = Red
             //Corners - start on U/D, go clockwise
             //Edges - Start on U/D, or F/B (U/D takes priority)
-            edges = new string[12][];
-            edges[0] = new string[2] { "W", "B" };
-            edges[1] = new string[2] { "W", "R" };
-            edges[2] = new string[2] { "W", "G" };
-            edges[3] = new string[2] { "W", "O" };
-            edges[4] = new string[2] { "B", "R" };
-            edges[5] = new string[2] { "G", "R" };
-            edges[6] = new string[2] { "G", "O" };
-            edges[7] = new string[2] { "B", "O" };
-            edges[8] = new string[2] { "Y", "B" };
-            edges[9] = new string[2] { "Y", "R" };
-            edges[10] = new string[2] { "Y", "G" };
-            edges[11] = new string[2] { "Y", "O" };
+            edges = new Edge[12];
+            edges[0] = new Edge("W", "B");
+            edges[1] = new Edge("W", "R");
+            edges[2] = new Edge("W", "G");
+            edges[3] = new Edge("W", "O");
+            edges[4] = new Edge("B", "R");
+            edges[5] = new Edge("G", "R");
+            edges[6] = new Edge("G", "O");
+            edges[7] = new Edge("B", "O");
+            edges[8] = new Edge("Y", "B");
+            edges[9] = new Edge("Y", "R");
+            edges[10] = new Edge("Y", "G");
+            edges[11] = new Edge("Y", "O");
             corners = new Corner[8];
             corners[0] = new Corner("W", "O", "B");
             corners[1] = new Corner("W", "B", "R");

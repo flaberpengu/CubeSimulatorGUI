@@ -6,10 +6,8 @@ using System.Threading.Tasks;
 
 namespace CubeSimulatorGUI
 {
-    public class Corner
+    public class Corner : Piece
     {
-        public string[] faces;
-
         public void IncrementFaces()
         {
             string[] tempFaces = new string[3] { faces[2], faces[0], faces[1] };
@@ -22,9 +20,8 @@ namespace CubeSimulatorGUI
             Array.Copy(tempFaces, faces, 3);
         }
 
-        public Corner(string face0, string face1, string face2)
+        public Corner(string face0, string face1, string face2) : base(face0, face1, face2)
         {
-            faces = new string[3] { face0, face1, face2 };
         }
     }
 }

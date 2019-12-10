@@ -150,4 +150,7 @@ namespace CubeSimulatorGUI
         }
     }
 }
-//SORT MOVES OUT - change temp[i], make temp a list of corners
+//REWRITE INVERSE MOVES TO USE EDGE CLASS
+//MAKE CENTRE PIECE CLASS
+//COLOURS
+//3D RENDER?
