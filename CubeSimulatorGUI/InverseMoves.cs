@@ -9,8 +9,21 @@ namespace CubeSimulatorGUI
     class InverseMoves
     {
         //Method to rotate edges during R' move; takes in and returns jagged array of edges
-        static public string[][] REdges(string[][] edges)
+        static public Edge[] REdges(Edge[] edges)
         {
+            //Rotate R face, starting at U, anticlockwise (facing R side)
+            Edge temp = edges[5];
+            edges[5] = edges[1];
+            Edge temp2 = edges[9];
+            edges[9] = temp;
+            temp = edges[4];
+            edges[4] = temp2;
+            edges[1] = temp;
+
+            //Return edited array
+            return edges;
+
+            /*
             //Temp copies edges, starts at U, clockwise (facing R side)
             string[][] temp = new string[4][];
             temp[0] = new string[2];
@@ -30,6 +43,7 @@ namespace CubeSimulatorGUI
 
             //Return edited array
             return edges;
+            */
         }
 
         //Method to rotate corners during R' move; takes in and returns jagged array of corners
@@ -97,8 +111,21 @@ namespace CubeSimulatorGUI
         }
 
         //Method to rotate edges during L' move; takes in and returns jagged array of edges
-        static public string[][] LEdges(string[][] edges)
+        static public Edge[] LEdges(Edge[] edges)
         {
+            //Rotate L face, starting at U, anticlockwise (facing L side)
+            Edge temp = edges[7];
+            edges[7] = edges[3];
+            Edge temp2 = edges[11];
+            edges[11] = temp;
+            temp = edges[6];
+            edges[6] = temp2;
+            edges[3] = temp;
+
+            //Return edited array
+            return edges;
+
+            /*
             //Temp copies edges, starts at U, clockwise (facing L side)
             string[][] temp = new string[4][];
             temp[0] = new string[2];
@@ -118,6 +145,7 @@ namespace CubeSimulatorGUI
 
             //Return edited array
             return edges;
+            */
         }
 
         //Method to rotate corners during L' move; takes in and returns jagged array of corners
@@ -185,8 +213,21 @@ namespace CubeSimulatorGUI
         }
 
         //Method to rotate edges during U' move; takes in and returns jagged array of edges
-        static public string[][] UEdges(string[][] edges)
+        static public Edge[] UEdges(Edge[] edges)
         {
+            //Rotate U face, starting at UB, anticlockwise (facing U side)
+            Edge temp = edges[3];
+            edges[3] = edges[0];
+            Edge temp2 = edges[2];
+            edges[2] = temp;
+            temp = edges[1];
+            edges[1] = temp2;
+            edges[0] = temp;
+
+            //Return edited array
+            return edges;
+
+            /*
             //Temp copies edges, starts at UB, clockwise (facing U side)
             string[][] temp = new string[4][];
             temp[0] = new string[2];
@@ -206,6 +247,7 @@ namespace CubeSimulatorGUI
 
             //Return edited array of edges
             return edges;
+            */
         }
 
         //Method to rotate corners during U' move; takes in and returns jagged array of corners
@@ -247,8 +289,21 @@ namespace CubeSimulatorGUI
         }
 
         //Method to rotate edges during D' move; takes in and returns jagged array of edges
-        static public string[][] DEdges(string[][] edges)
+        static public Edge[] DEdges(Edge[] edges)
         {
+            //Rotate D face, starting at DB, anticlockwise (facing D side)
+            Edge temp = edges[11];
+            edges[11] = edges[8];
+            Edge temp2 = edges[10];
+            edges[10] = temp;
+            temp = edges[9];
+            edges[9] = temp2;
+            edges[8] = temp;
+
+            //Return edited array
+            return edges;
+
+            /*
             //Temp copies edges, starts at DB, clockwise (facing D side)
             string[][] temp = new string[4][];
             temp[0] = new string[2];
@@ -268,6 +323,7 @@ namespace CubeSimulatorGUI
 
             //Return edited array of edges
             return edges;
+            */
         }
 
         //Method to rotate corners during D' move; takes in and returns jagged array of corners
@@ -309,8 +365,27 @@ namespace CubeSimulatorGUI
         }
 
         //Method to rotate edges during F' move; takes in and returns jagged array of corners
-        static public string[][] FEdges(string[][] edges)
+        static public Edge[] FEdges(Edge[] edges)
         {
+            //Flip edges
+            edges[2].Flip();
+            edges[5].Flip();
+            edges[10].Flip();
+            edges[6].Flip();
+
+            //Rotate F face, starting at U, anticlockwise (facing F side)
+            Edge temp = edges[6];
+            edges[6] = edges[2];
+            Edge temp2 = edges[10];
+            edges[10] = temp;
+            temp = edges[5];
+            edges[5] = temp2;
+            edges[2] = temp;
+
+            //Return edited array
+            return edges;
+
+            /*
             //Temp copies edges, starts at U, clockwise (facing F side)
             string[][] temp = new string[4][];
             temp[0] = new string[2];
@@ -339,6 +414,7 @@ namespace CubeSimulatorGUI
 
             //Return edited array of edges
             return edges;
+            */
         }
 
         //Method to rotate corners during F' move; takes in and returns jagged array of corners
@@ -406,8 +482,27 @@ namespace CubeSimulatorGUI
         }
 
         //Method to rotate edges during B' move; takes in and returns jagged array of corners
-        static public string[][] BEdges(string[][] edges)
+        static public Edge[] BEdges(Edge[] edges)
         {
+            //Flip edges
+            edges[0].Flip();
+            edges[7].Flip();
+            edges[8].Flip();
+            edges[4].Flip();
+
+            //Rotate B face, starting at UB, anticlockwise (facing B side)
+            Edge temp = edges[4];
+            edges[4] = edges[0];
+            Edge temp2 = edges[8];
+            edges[8] = temp;
+            temp = edges[7];
+            edges[7] = temp2;
+            edges[0] = temp;
+
+            //Return edited array
+            return edges;
+
+            /*
             //Temp copies edges, starts at U, clockwise (facing B side)
             string[][] temp = new string[4][];
             temp[0] = new string[2];
@@ -436,6 +531,7 @@ namespace CubeSimulatorGUI
 
             //Return edited array of edges
             return edges;
+            */
         }
 
         //Method to rotate corners during B' move; takes in and returns jagged array of corners

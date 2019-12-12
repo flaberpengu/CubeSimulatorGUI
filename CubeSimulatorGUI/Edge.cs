@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace CubeSimulatorGUI
 {
-    class Edge : Piece
+    public class Edge : Piece
     {
         public void Flip()
         {

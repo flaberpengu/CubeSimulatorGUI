@@ -119,7 +119,7 @@ namespace CubeSimulatorGUI
             edges[3] = temp;
 
             //Return edited array
-            return edges
+            return edges;
 
             /*
             //Temp copies edges, starts at U, clockwise (facing L side)

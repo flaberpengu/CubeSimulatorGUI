@@ -7,7 +7,7 @@ using System.Windows.Forms;
 
 namespace CubeSimulatorGUI
 {
-    class Cube
+    public class Cube
     {
         public Edge[] edges;
         public Corner[] corners;
