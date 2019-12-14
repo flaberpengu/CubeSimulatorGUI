@@ -50,6 +50,7 @@
             this.rtbScramble = new System.Windows.Forms.RichTextBox();
             this.label1 = new System.Windows.Forms.Label();
             this.btnScramble = new System.Windows.Forms.Button();
+            this.btnRegZ = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // rtbBFace
@@ -264,11 +265,22 @@
             this.btnScramble.UseVisualStyleBackColor = true;
             this.btnScramble.Click += new System.EventHandler(this.btnScramble_Click);
             // 
+            // btnRegZ
+            // 
+            this.btnRegZ.Location = new System.Drawing.Point(578, 415);
+            this.btnRegZ.Name = "btnRegZ";
+            this.btnRegZ.Size = new System.Drawing.Size(45, 23);
+            this.btnRegZ.TabIndex = 28;
+            this.btnRegZ.Text = "Z";
+            this.btnRegZ.UseVisualStyleBackColor = true;
+            this.btnRegZ.Click += new System.EventHandler(this.btnRegZ_Click);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
+            this.Controls.Add(this.btnRegZ);
             this.Controls.Add(this.btnScramble);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.rtbScramble);
@@ -322,6 +334,7 @@
         private System.Windows.Forms.RichTextBox rtbScramble;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Button btnScramble;
+        private System.Windows.Forms.Button btnRegZ;
     }
 }
 

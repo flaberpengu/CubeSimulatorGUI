@@ -11,6 +11,7 @@ namespace CubeSimulatorGUI
     {
         public Edge[] edges;
         public Corner[] corners;
+        public Centre[] centres;
         public string[] scramble;
         public void InitialiseCube()
         {
@@ -41,6 +42,7 @@ namespace CubeSimulatorGUI
             //Always assume U = White, F = Green, R = Red
             //Corners - start on U/D, go clockwise
             //Edges - Start on U/D, or F/B (U/D takes priority)
+            //Centres - W, G, R, B, Y, O
             edges = new Edge[12];
             edges[0] = new Edge("W", "B");
             edges[1] = new Edge("W", "R");
@@ -63,16 +65,13 @@ namespace CubeSimulatorGUI
             corners[5] = new Corner("Y", "R", "B");
             corners[6] = new Corner("Y", "G", "R");
             corners[7] = new Corner("Y", "O", "G");
-            /*corners = new string[8][];
-            corners[0] = new string[3] { "W", "O", "B" };
-            corners[1] = new string[3] { "W", "B", "R" };
-            corners[2] = new string[3] { "W", "R", "G" };
-            corners[3] = new string[3] { "W", "G", "O" };
-            corners[4] = new string[3] { "Y", "B", "O" };
-            corners[5] = new string[3] { "Y", "R", "B" };
-            corners[6] = new string[3] { "Y", "G", "R" };
-            corners[7] = new string[3] { "Y", "O", "G" };
-            */
+            centres = new Centre[6];
+            centres[0] = new Centre("W");
+            centres[1] = new Centre("G");
+            centres[2] = new Centre("R");
+            centres[3] = new Centre("B");
+            centres[4] = new Centre("Y");
+            centres[5] = new Centre("O");
         }
 
         //Method to do an R rotation
@@ -159,11 +158,90 @@ namespace CubeSimulatorGUI
             corners = InverseMoves.BCorners(corners);
         }
 
+        //Method to do a Z cube rotation
+        public void RegularZ()
+        {
+            edges = Rotations.ZEdges(edges);
+            centres = Rotations.ZCentres(centres);
+            corners = Rotations.ZCorners(corners);
+        }
+
         //Method to get and apply a random scramble to the cube
         public void GetScramble()
         {
             Scramble scrmbl = new Scramble();
             scramble = scrmbl.GenerateScramble();
+            foreach (string s in scramble)
+            {
+                switch (s)
+                {
+                    case "R":
+                        RegularR();
+                        continue;
+                    case "R'":
+                        InverseR();
+                        continue;
+                    case "R2":
+                        RegularR();
+                        RegularR();
+                        continue;
+                    case "L":
+                        RegularL();
+                        continue;
+                    case "L'":
+                        InverseL();
+                        continue;
+                    case "L2":
+                        RegularL();
+                        RegularL();
+                        continue;
+                    case "U":
+                        RegularU();
+                        continue;
+                    case "U'":
+                        InverseU();
+                        continue;
+                    case "U2":
+                        RegularU();
+                        RegularU();
+                        continue;
+                    case "F":
+                        RegularF();
+                        continue;
+                    case "F'":
+                        InverseF();
+                        continue;
+                    case "F2":
+                        RegularF();
+                        RegularF();
+                        continue;
+                    case "D":
+                        RegularD();
+                        continue;
+                    case "D'":
+                        InverseD();
+                        continue;
+                    case "D2":
+                        RegularD();
+                        RegularD();
+                        continue;
+                    case "B":
+                        RegularB();
+                        continue;
+                    case "B'":
+                        InverseB();
+                        continue;
+                    case "B2":
+                        RegularB();
+                        RegularB();
+                        continue;
+                }
+            }
+        }
+
+        //Method to apply a scramble to the cube
+        public void GiveScramble(string[] scramble)
+        {
             foreach (string s in scramble)
             {
                 switch (s)

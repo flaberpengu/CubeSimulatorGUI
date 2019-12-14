@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace CubeSimulatorGUI
 {
-    class InverseMoves
+    static class InverseMoves
     {
         //Method to rotate edges during R' move; takes in and returns jagged array of edges
         static public Edge[] REdges(Edge[] edges)

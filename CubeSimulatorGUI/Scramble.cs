@@ -12,6 +12,7 @@ namespace CubeSimulatorGUI
     {
         private string[] possibleMoves = new string[18] { "R", "R'", "R2", "L", "L'", "L2", "U", "U'", "U2", "F", "F'", "F2", "D", "D'", "D2", "B", "B'", "B2" };
         private Random rnd;
+        public static string[] lastScramble;
 
         public Scramble()
         {
@@ -55,6 +56,7 @@ namespace CubeSimulatorGUI
                 previousMove = newMove;
                 i++;
             }
+            Array.Copy(scramble, lastScramble, 25);
             return scramble;
         }
     }
