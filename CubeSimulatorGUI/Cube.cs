@@ -166,12 +166,36 @@ namespace CubeSimulatorGUI
             corners = Rotations.ZCorners(corners);
         }
 
+        //Method to do an E cube slice
+        public void RegularE()
+        {
+            edges = Rotations.EEdges(edges);
+            centres = Rotations.ZCentres(centres);
+        }
+
+        //Method to do a wide D rotation
+        public void RegularWideD()
+        {
+            RegularD();
+            RegularE();
+        }
+
+        //Method to do an inverse D rotation
+        public void InverseWideD()
+        {
+            InverseD();
+            RegularE();
+            RegularE();
+            RegularE();
+        }
+
         //Method to get and apply a random scramble to the cube
         public void GetScramble()
         {
             Scramble scrmbl = new Scramble();
             scramble = scrmbl.GenerateScramble();
-            foreach (string s in scramble)
+            GiveScramble(scramble);
+            /*foreach (string s in scramble)
             {
                 switch (s)
                 {
@@ -236,15 +260,17 @@ namespace CubeSimulatorGUI
                         RegularB();
                         continue;
                 }
-            }
+            }*/
         }
 
         //Method to apply a scramble to the cube
-        public void GiveScramble(string[] scramble)
+        public void GiveScramble(string[] gScramble)
         {
-            foreach (string s in scramble)
+            //foreach (string s in gScramble)
+            //{
+            for (int i = 0; i < gScramble.Length; i++)
             {
-                switch (s)
+                switch (gScramble[i])
                 {
                     case "R":
                         RegularR();
@@ -266,45 +292,58 @@ namespace CubeSimulatorGUI
                         RegularL();
                         RegularL();
                         continue;
-                    case "U":
+                     case "U":
                         RegularU();
                         continue;
-                    case "U'":
+                     case "U'":
                         InverseU();
                         continue;
-                    case "U2":
+                     case "U2":
                         RegularU();
                         RegularU();
                         continue;
-                    case "F":
+                     case "F":
                         RegularF();
                         continue;
-                    case "F'":
+                     case "F'":
                         InverseF();
                         continue;
-                    case "F2":
+                     case "F2":
                         RegularF();
                         RegularF();
                         continue;
-                    case "D":
+                     case "D":
                         RegularD();
                         continue;
-                    case "D'":
+                     case "D'":
                         InverseD();
                         continue;
-                    case "D2":
+                     case "D2":
                         RegularD();
                         RegularD();
                         continue;
-                    case "B":
+                     case "B":
                         RegularB();
                         continue;
-                    case "B'":
+                     case "B'":
                         InverseB();
                         continue;
-                    case "B2":
+                     case "B2":
                         RegularB();
                         RegularB();
+                        continue;
+                     case "Z":
+                        RegularZ();
+                        continue;
+                     case "d":
+                        RegularWideD();
+                        continue;
+                     case "d'":
+                        InverseWideD();
+                        continue;
+                     case "d2":
+                        RegularWideD();
+                        RegularWideD();
                         continue;
                 }
             }

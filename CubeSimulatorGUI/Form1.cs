@@ -14,12 +14,14 @@ namespace CubeSimulatorGUI
     public partial class Form1 : Form
     {
         public Cube mainCube;
+        private Solver mySolver;
         public Form1()
         {
             InitializeComponent();
             mainCube = new Cube();
             mainCube.InitialiseCube();
             UpdateFaces(mainCube.edges, mainCube.corners, mainCube.centres);
+            mySolver = new Solver();
         }
 
         //Method to update all faces
@@ -37,6 +39,204 @@ namespace CubeSimulatorGUI
             rtbBFace.Text = (corners[1].faces[1] + "    " + edges[0].faces[1] + "    " + corners[0].faces[2] + "\n" + edges[4].faces[0] + "    " + centres[3].faces[0] + "    " + edges[7].faces[0] + "\n" + corners[5].faces[2] + "    " + edges[8].faces[1] + "    " + corners[4].faces[1]);
             rtbDFace.Clear();
             rtbDFace.Text = (corners[7].faces[0] + "    " + edges[10].faces[0] + "    " + corners[6].faces[0] + "\n" + edges[11].faces[0] + "    " + centres[4].faces[0] + "    " + edges[9].faces[0] + "\n" + corners[4].faces[0] + "    " + edges[8].faces[0] + "    " + corners[5].faces[0]);
+        }
+
+        //Method to refine solve algorithm
+        private string[] RefineSolve(string[] solve)
+        {
+            string lastMove = "P";
+            List<string> newSolveL = new List<string>();
+            for (int i = 0; i < solve.Length-1; i++)
+            {
+                if (lastMove.Substring(0, 1) != solve[i].Substring(0, 1))
+                {
+                    if (solve[i].Substring(0, 1) == solve[i + 1].Substring(0, 1))
+                    {
+                        if (solve[i].Length == 1)
+                        {
+                            if (solve[i + 1].Length == 1)
+                            {
+                                string temp = solve[i] + "2";
+                                newSolveL.Add(temp);
+                                i++;
+                                lastMove = temp;
+                            }
+                            else
+                            {
+                                if (solve[i + 1].Substring(1, 1) == "'")
+                                {
+                                    i++;
+                                    lastMove = "P";
+                                }
+                                else
+                                {
+                                    string temp = solve[i] + "'";
+                                    newSolveL.Add(temp);
+                                    i++;
+                                    lastMove = temp;
+                                }
+                            }
+                        }
+                        else
+                        {
+                            if (solve[i + 1].Length == 1)
+                            {
+                                if (solve[i].Substring(1, 1) == "2")
+                                {
+                                    string temp = solve[i] + "'";
+                                    newSolveL.Add(temp);
+                                    i++;
+                                    lastMove = temp;
+                                }
+                                else
+                                {
+                                    i++;
+                                    lastMove = "P";
+                                }
+                            }
+                            else
+                            {
+                                if (solve[i].Substring(1, 1) == "2")
+                                {
+                                    if (solve[i + 1].Substring(1, 1) == "2")
+                                    {
+                                        i++;
+                                        lastMove = "P";
+                                    }
+                                    else
+                                    {
+                                        newSolveL.Add(solve[i].Substring(0, 1));
+                                        i++;
+                                        lastMove = solve[i].Substring(0,1);
+                                    }
+                                }
+                                else
+                                {
+                                    if (solve[i + 1].Substring(1, 1) == "2")
+                                    {
+                                        newSolveL.Add(solve[i].Substring(0, 1));
+                                        i++;
+                                        lastMove = solve[i].Substring(0,1);
+                                    }
+                                    else
+                                    {
+                                        string temp = solve[i].Substring(0, 1) + "2";
+                                        newSolveL.Add(temp);
+                                        i++;
+                                        lastMove = temp;
+                                    }
+                                }
+                            }
+                        }
+                    }
+                    else
+                    {
+                        newSolveL.Add(solve[i]);
+                        lastMove = solve[i];
+                    }
+                }
+                else
+                {
+                    if (lastMove.Length == 1)
+                    {
+                        if (solve[i].Length == 1)
+                        {
+                            newSolveL.RemoveAt(newSolveL.Count - 1);
+                            string temp = solve[i] + "2";
+                            newSolveL.Add(temp);
+                            lastMove = temp;
+                            i++;
+                        }
+                        else
+                        {
+                            if (solve[i].Substring(1,1) == "2")
+                            {
+                                newSolveL.RemoveAt(newSolveL.Count - 1);
+                                string temp = solve[i] + "'";
+                                newSolveL.Add(temp);
+                                lastMove = temp;
+                                i++;
+                            }
+                            else
+                            {
+                                newSolveL.RemoveAt(newSolveL.Count - 1);
+                                lastMove = "P";
+                                i++;
+                            }
+                        }
+                    }
+                    else
+                    {
+                        if (lastMove.Substring(1,1) == "2")
+                        {
+                            if (solve[i].Length == 1)
+                            {
+                                newSolveL.RemoveAt(newSolveL.Count - 1);
+                                string temp = solve[i] + "'";
+                                newSolveL.Add(temp);
+                                lastMove = temp;
+                                i++;
+                            }
+                            else
+                            {
+                                if (solve[i].Substring(1,1) == "2")
+                                {
+                                    newSolveL.RemoveAt(newSolveL.Count - 1);
+                                    lastMove = "P";
+                                    i++;
+                                }
+                                else
+                                {
+                                    newSolveL.RemoveAt(newSolveL.Count - 1);
+                                    newSolveL.Add(solve[i].Substring(0, 1));
+                                    lastMove = solve[i].Substring(0, 1);
+                                    i++;
+                                }
+                            }
+                        }
+                        else
+                        {
+                            if (solve[i].Length == 1)
+                            {
+                                newSolveL.RemoveAt(newSolveL.Count - 1);
+                                lastMove = "P";
+                                i++;
+                            }
+                            else
+                            {
+                                if (solve[i].Substring(1, 1) == "2")
+                                {
+                                    newSolveL.RemoveAt(newSolveL.Count - 1);
+                                    newSolveL.Add(solve[i].Substring(0, 1));
+                                    lastMove = solve[i].Substring(0, 1);
+                                    i++;
+                                }
+                                else
+                                {
+                                    newSolveL.RemoveAt(newSolveL.Count - 1);
+                                    string temp = solve[i] + "2";
+                                    newSolveL.Add(temp);
+                                    lastMove = temp;
+                                    i++;
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+            string[] newSolveA = newSolveL.ToArray();
+            return newSolveA;
+        }
+
+        //Method to put solve in textbox
+        public void UpdateSolve(string[] solve)
+        {
+            tbSolve.Clear();
+            //solve = RefineSolve(solve);
+            foreach (string s in solve)
+            {
+                tbSolve.Text += s;
+            }
         }
 
         //Method to be called when the button for a regular R move is pressed
@@ -154,10 +354,27 @@ namespace CubeSimulatorGUI
             mainCube.RegularZ();
             UpdateFaces(mainCube.edges, mainCube.corners, mainCube.centres);
         }
+
+        private void btnSolver_Click(object sender, EventArgs e)
+        {
+            mySolver.InitialiseForSolve();
+            List<string> movesToPerform = new List<string>();
+            movesToPerform = mySolver.SolveCube(movesToPerform);
+            string[] aMovesToPerform = movesToPerform.ToArray();
+            //MessageBox.Show("Executed ToArray()");
+            //aMovesToPerform = movesToPerform.ToArray();
+            //for (int i = 0; i < movesToPerform.Count; i++)
+            //{
+            //    aMovesToPerform[i] = movesToPerform[i];
+            //}
+            //MessageBox.Show(movesToPerform[4]);
+            //MessageBox.Show(aMovesToPerform[4]);
+            mainCube.GiveScramble(aMovesToPerform);
+            UpdateFaces(mainCube.edges, mainCube.corners, mainCube.centres);
+            UpdateSolve(aMovesToPerform);
+        }
     }
 }
-//REWRITE INVERSE MOVES TO USE EDGE CLASS
-//MAKE CENTRE PIECE CLASS
 //COLOURS
 //3D RENDER?
-//Z MOVE (W -> R)
+//CREATE d' MOVE -- CHANGE d' CASE FROM d3 TO d'

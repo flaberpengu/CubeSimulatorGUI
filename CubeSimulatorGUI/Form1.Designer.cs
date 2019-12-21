@@ -51,6 +51,8 @@
             this.label1 = new System.Windows.Forms.Label();
             this.btnScramble = new System.Windows.Forms.Button();
             this.btnRegZ = new System.Windows.Forms.Button();
+            this.btnSolver = new System.Windows.Forms.Button();
+            this.tbSolve = new System.Windows.Forms.TextBox();
             this.SuspendLayout();
             // 
             // rtbBFace
@@ -275,11 +277,31 @@
             this.btnRegZ.UseVisualStyleBackColor = true;
             this.btnRegZ.Click += new System.EventHandler(this.btnRegZ_Click);
             // 
+            // btnSolver
+            // 
+            this.btnSolver.Location = new System.Drawing.Point(680, 179);
+            this.btnSolver.Name = "btnSolver";
+            this.btnSolver.Size = new System.Drawing.Size(75, 23);
+            this.btnSolver.TabIndex = 29;
+            this.btnSolver.Text = "Solve";
+            this.btnSolver.UseVisualStyleBackColor = true;
+            this.btnSolver.Click += new System.EventHandler(this.btnSolver_Click);
+            // 
+            // tbSolve
+            // 
+            this.tbSolve.Location = new System.Drawing.Point(19, 87);
+            this.tbSolve.Name = "tbSolve";
+            this.tbSolve.ReadOnly = true;
+            this.tbSolve.Size = new System.Drawing.Size(757, 20);
+            this.tbSolve.TabIndex = 30;
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
+            this.Controls.Add(this.tbSolve);
+            this.Controls.Add(this.btnSolver);
             this.Controls.Add(this.btnRegZ);
             this.Controls.Add(this.btnScramble);
             this.Controls.Add(this.label1);
@@ -335,6 +357,8 @@
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Button btnScramble;
         private System.Windows.Forms.Button btnRegZ;
+        private System.Windows.Forms.Button btnSolver;
+        private System.Windows.Forms.TextBox tbSolve;
     }
 }
 
