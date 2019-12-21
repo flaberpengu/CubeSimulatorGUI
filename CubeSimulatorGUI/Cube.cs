@@ -345,6 +345,8 @@ namespace CubeSimulatorGUI
                         RegularWideD();
                         RegularWideD();
                         continue;
+                     case " ":
+                        continue;
                 }
             }
         }

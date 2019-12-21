@@ -65,6 +65,7 @@ namespace CubeSimulatorGUI
                 movesPerformed.Add("F'");
                 movesPerformed.Add("U");
             }
+            movesPerformed.Add(" ");
             return movesPerformed;
         }
 
@@ -231,6 +232,7 @@ namespace CubeSimulatorGUI
                     }
                     break;
             }
+            movesPerformed.Add(" ");
             return movesPerformed;
         }
 
@@ -279,6 +281,7 @@ namespace CubeSimulatorGUI
                     i = myCube.centres.Length;
                 }
             }
+            movesPerformed.Add(" ");
             return movesPerformed;
         }
 
@@ -391,6 +394,7 @@ namespace CubeSimulatorGUI
                     }
                 }
             }
+            movesPerformed.Add(" ");
             return movesPerformed;
         }
 
@@ -405,6 +409,7 @@ namespace CubeSimulatorGUI
             movesPerformed.Add("R");
             movesPerformed.Add("U'");
             movesPerformed.Add("R'");
+            movesPerformed.Add(" ");
             return movesPerformed;
         }
 
@@ -417,6 +422,7 @@ namespace CubeSimulatorGUI
             movesPerformed.Add("R");
             movesPerformed.Add("U");
             movesPerformed.Add("R'");
+            movesPerformed.Add(" ");
             return movesPerformed;
         }
 
@@ -440,6 +446,7 @@ namespace CubeSimulatorGUI
             movesPerformed.Add("R");
             movesPerformed.Add("U'");
             movesPerformed.Add("R'");
+            movesPerformed.Add(" ");
             return movesPerformed;
         }
 
@@ -502,6 +509,7 @@ namespace CubeSimulatorGUI
                     movesPerformed.Add("L");
                     break;
             }
+            movesPerformed.Add(" ");
             return movesPerformed;
         }
 
@@ -532,6 +540,44 @@ namespace CubeSimulatorGUI
                             foundPos.Add(i);
                             i = -1;
                         }
+                        else
+                        {
+                            bool correctPlace = true;
+                            switch (i)
+                            {
+                                case 4:
+                                    if (myCube.corners[i].faces[1] != myCube.centres[3].faces[0])
+                                    {
+                                        correctPlace = false;
+                                    }
+                                    break;
+                                case 5:
+                                    if (myCube.corners[i].faces[1] != myCube.centres[2].faces[0])
+                                    {
+                                        correctPlace = false;
+                                    }
+                                    break;
+                                case 6:
+                                    if (myCube.corners[i].faces[1] != myCube.centres[1].faces[0])
+                                    {
+                                        correctPlace = false;
+                                    }
+                                    break;
+                                case 7:
+                                    if (myCube.corners[i].faces[1] != myCube.centres[5].faces[0])
+                                    {
+                                        correctPlace = false;
+                                    }
+                                    break;
+                            }
+                            if (!correctPlace)
+                            {
+                                movesPerformed = CornerToFR(i, movesPerformed);
+                                cornerInUF = true;
+                                foundPos.Add(i);
+                                i = -1;
+                            }
+                        }
                     }
                     if (cornerInUF)
                     {
@@ -561,6 +607,7 @@ namespace CubeSimulatorGUI
                                     movesPerformed = InsertCornerU(movesPerformed);
                                     myCube.InverseWideD();
                                     movesPerformed.Add("d'");
+                                    movesPerformed.Add(" ");
                                 }
                                 else if (myCube.centres[3].faces[0] == myCube.corners[2].faces[1])
                                 {
@@ -571,20 +618,23 @@ namespace CubeSimulatorGUI
                                     myCube.RegularWideD();
                                     myCube.RegularWideD();
                                     movesPerformed.Add("d2");
+                                    movesPerformed.Add(" ");
                                 }
-                                else if (myCube.corners[5].faces[0] == myCube.corners[2].faces[1])
+                                else if (myCube.centres[5].faces[0] == myCube.corners[2].faces[1])
                                 {
                                     myCube.InverseWideD();
                                     movesPerformed.Add("d'");
                                     movesPerformed = InsertCornerU(movesPerformed);
                                     myCube.RegularWideD();
                                     movesPerformed.Add("d");
+                                    movesPerformed.Add(" ");
                                 }
                                 break;
                             case "R":
                                 if (myCube.centres[1].faces[0] == myCube.corners[2].faces[2])
                                 {
                                     movesPerformed = InsertCornerR(movesPerformed);
+                                    movesPerformed.Add(" ");
                                 }
                                 else if (myCube.centres[2].faces[0] == myCube.corners[2].faces[2])
                                 {
@@ -593,6 +643,7 @@ namespace CubeSimulatorGUI
                                     movesPerformed = InsertCornerR(movesPerformed);
                                     myCube.InverseWideD();
                                     movesPerformed.Add("d'");
+                                    movesPerformed.Add(" ");
                                 }
                                 else if (myCube.centres[3].faces[0] == myCube.corners[2].faces[2])
                                 {
@@ -603,20 +654,23 @@ namespace CubeSimulatorGUI
                                     myCube.RegularWideD();
                                     myCube.RegularWideD();
                                     movesPerformed.Add("d2");
+                                    movesPerformed.Add(" ");
                                 }
-                                else if (myCube.corners[5].faces[0] == myCube.corners[2].faces[1])
+                                else if (myCube.centres[5].faces[0] == myCube.corners[2].faces[1])
                                 {
                                     myCube.InverseWideD();
                                     movesPerformed.Add("d'");
                                     movesPerformed = InsertCornerR(movesPerformed);
                                     myCube.RegularWideD();
                                     movesPerformed.Add("d");
+                                    movesPerformed.Add(" ");
                                 }
                                 break;
                             case "F":
                                 if (myCube.centres[1].faces[0] == myCube.corners[2].faces[0])
                                 {
                                     movesPerformed = InsertCornerF(movesPerformed);
+                                    movesPerformed.Add(" ");
                                 }
                                 else if (myCube.centres[2].faces[0] == myCube.corners[2].faces[0])
                                 {
@@ -625,6 +679,7 @@ namespace CubeSimulatorGUI
                                     movesPerformed = InsertCornerF(movesPerformed);
                                     myCube.InverseWideD();
                                     movesPerformed.Add("d'");
+                                    movesPerformed.Add(" ");
                                 }
                                 else if (myCube.centres[3].faces[0] == myCube.corners[2].faces[0])
                                 {
@@ -635,14 +690,16 @@ namespace CubeSimulatorGUI
                                     myCube.RegularWideD();
                                     myCube.RegularWideD();
                                     movesPerformed.Add("d2");
+                                    movesPerformed.Add(" ");
                                 }
-                                else if (myCube.corners[5].faces[0] == myCube.corners[2].faces[0])
+                                else if (myCube.centres[5].faces[0] == myCube.corners[2].faces[0])
                                 {
                                     myCube.InverseWideD();
                                     movesPerformed.Add("d'");
                                     movesPerformed = InsertCornerF(movesPerformed);
                                     myCube.RegularWideD();
                                     movesPerformed.Add("d");
+                                    movesPerformed.Add(" ");
                                 }
                                 break;
                         }
@@ -653,7 +710,7 @@ namespace CubeSimulatorGUI
                     }
                 }
             }
-
+            movesPerformed.Add(" ");
             return movesPerformed;
         }
 
@@ -676,6 +733,7 @@ namespace CubeSimulatorGUI
             movesPerformed.Add("F'");
             movesPerformed.Add("U");
             movesPerformed.Add("F");
+            movesPerformed.Add(" ");
             return movesPerformed;
         }
 
@@ -698,6 +756,7 @@ namespace CubeSimulatorGUI
             movesPerformed.Add("F");
             movesPerformed.Add("U'");
             movesPerformed.Add("F'");
+            movesPerformed.Add(" ");
             return movesPerformed;
         }
 
@@ -754,6 +813,7 @@ namespace CubeSimulatorGUI
                     movesPerformed.Add("U2");
                     break;
             }
+            movesPerformed.Add(" ");
             return movesPerformed;
         }
 
@@ -765,7 +825,7 @@ namespace CubeSimulatorGUI
             {
 
             }
-
+            movesPerformed.Add(" ");
             return movesPerformed;
         }
 
