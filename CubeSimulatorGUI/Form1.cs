@@ -231,11 +231,11 @@ namespace CubeSimulatorGUI
         //Method to put solve in textbox
         public void UpdateSolve(string[] solve)
         {
-            tbSolve.Clear();
+            rtbSolve.Clear();
             //solve = RefineSolve(solve);
             foreach (string s in solve)
             {
-                tbSolve.Text += s;
+                rtbSolve.Text += s;
             }
         }
 

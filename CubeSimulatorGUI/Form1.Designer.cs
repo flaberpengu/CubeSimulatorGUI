@@ -52,12 +52,12 @@
             this.btnScramble = new System.Windows.Forms.Button();
             this.btnRegZ = new System.Windows.Forms.Button();
             this.btnSolver = new System.Windows.Forms.Button();
-            this.tbSolve = new System.Windows.Forms.TextBox();
+            this.rtbSolve = new System.Windows.Forms.RichTextBox();
             this.SuspendLayout();
             // 
             // rtbBFace
             // 
-            this.rtbBFace.Location = new System.Drawing.Point(507, 208);
+            this.rtbBFace.Location = new System.Drawing.Point(507, 244);
             this.rtbBFace.Name = "rtbBFace";
             this.rtbBFace.ReadOnly = true;
             this.rtbBFace.Size = new System.Drawing.Size(98, 89);
@@ -66,7 +66,7 @@
             // 
             // rtbRFace
             // 
-            this.rtbRFace.Location = new System.Drawing.Point(403, 208);
+            this.rtbRFace.Location = new System.Drawing.Point(403, 244);
             this.rtbRFace.Name = "rtbRFace";
             this.rtbRFace.ReadOnly = true;
             this.rtbRFace.Size = new System.Drawing.Size(98, 89);
@@ -75,7 +75,7 @@
             // 
             // rtbLFace
             // 
-            this.rtbLFace.Location = new System.Drawing.Point(195, 208);
+            this.rtbLFace.Location = new System.Drawing.Point(195, 244);
             this.rtbLFace.Name = "rtbLFace";
             this.rtbLFace.ReadOnly = true;
             this.rtbLFace.Size = new System.Drawing.Size(98, 89);
@@ -84,7 +84,7 @@
             // 
             // rtbDFace
             // 
-            this.rtbDFace.Location = new System.Drawing.Point(299, 303);
+            this.rtbDFace.Location = new System.Drawing.Point(299, 339);
             this.rtbDFace.Name = "rtbDFace";
             this.rtbDFace.ReadOnly = true;
             this.rtbDFace.Size = new System.Drawing.Size(98, 89);
@@ -93,7 +93,7 @@
             // 
             // rtbFFace
             // 
-            this.rtbFFace.Location = new System.Drawing.Point(299, 208);
+            this.rtbFFace.Location = new System.Drawing.Point(299, 244);
             this.rtbFFace.Name = "rtbFFace";
             this.rtbFFace.ReadOnly = true;
             this.rtbFFace.Size = new System.Drawing.Size(98, 89);
@@ -102,7 +102,7 @@
             // 
             // rtbUFace
             // 
-            this.rtbUFace.Location = new System.Drawing.Point(299, 113);
+            this.rtbUFace.Location = new System.Drawing.Point(299, 149);
             this.rtbUFace.Name = "rtbUFace";
             this.rtbUFace.ReadOnly = true;
             this.rtbUFace.Size = new System.Drawing.Size(98, 89);
@@ -287,20 +287,21 @@
             this.btnSolver.UseVisualStyleBackColor = true;
             this.btnSolver.Click += new System.EventHandler(this.btnSolver_Click);
             // 
-            // tbSolve
+            // rtbSolve
             // 
-            this.tbSolve.Location = new System.Drawing.Point(19, 87);
-            this.tbSolve.Name = "tbSolve";
-            this.tbSolve.ReadOnly = true;
-            this.tbSolve.Size = new System.Drawing.Size(757, 20);
-            this.tbSolve.TabIndex = 30;
+            this.rtbSolve.Location = new System.Drawing.Point(15, 84);
+            this.rtbSolve.Name = "rtbSolve";
+            this.rtbSolve.ReadOnly = true;
+            this.rtbSolve.Size = new System.Drawing.Size(761, 59);
+            this.rtbSolve.TabIndex = 31;
+            this.rtbSolve.Text = "";
             // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
-            this.Controls.Add(this.tbSolve);
+            this.Controls.Add(this.rtbSolve);
             this.Controls.Add(this.btnSolver);
             this.Controls.Add(this.btnRegZ);
             this.Controls.Add(this.btnScramble);
@@ -358,7 +359,7 @@
         private System.Windows.Forms.Button btnScramble;
         private System.Windows.Forms.Button btnRegZ;
         private System.Windows.Forms.Button btnSolver;
-        private System.Windows.Forms.TextBox tbSolve;
+        private System.Windows.Forms.RichTextBox rtbSolve;
     }
 }
 

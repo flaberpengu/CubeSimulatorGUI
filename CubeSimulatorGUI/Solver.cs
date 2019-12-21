@@ -516,18 +516,18 @@ namespace CubeSimulatorGUI
         //Method to insert corner pieces
         private List<string> InsertCorners(List<string> movesPerformed)
         {
-            bool cornerInUF;
+            bool cornerInUR;
             List<int> foundPos = new List<int>();
             string cornerCase;
             for (int i = 0; i < myCube.corners.Length; i++)
             {
-                cornerInUF = false;
+                cornerInUR = false;
                 if (myCube.corners[i].faces[0] == "W" || myCube.corners[i].faces[1] == "W" || myCube.corners[i].faces[2] == "W")
                 {
                     if (i < 4)
                     {
                         movesPerformed = CornerToFR(i, movesPerformed);
-                        cornerInUF = true;
+                        cornerInUR = true;
                         foundPos.Add(i);
                         i = -1;
                     }
@@ -536,7 +536,7 @@ namespace CubeSimulatorGUI
                         if (myCube.corners[i].faces[0] != "W")
                         {
                             movesPerformed = CornerToFR(i, movesPerformed);
-                            cornerInUF = true;
+                            cornerInUR = true;
                             foundPos.Add(i);
                             i = -1;
                         }
@@ -573,13 +573,13 @@ namespace CubeSimulatorGUI
                             if (!correctPlace)
                             {
                                 movesPerformed = CornerToFR(i, movesPerformed);
-                                cornerInUF = true;
+                                cornerInUR = true;
                                 foundPos.Add(i);
                                 i = -1;
                             }
                         }
                     }
-                    if (cornerInUF)
+                    if (cornerInUR)
                     {
                         if (myCube.corners[2].faces[0] == "W")
                         {
@@ -602,11 +602,11 @@ namespace CubeSimulatorGUI
                                 }
                                 else if (myCube.centres[2].faces[0] == myCube.corners[2].faces[1])
                                 {
-                                    myCube.RegularWideD();
-                                    movesPerformed.Add("d");
-                                    movesPerformed = InsertCornerU(movesPerformed);
                                     myCube.InverseWideD();
                                     movesPerformed.Add("d'");
+                                    movesPerformed = InsertCornerU(movesPerformed);
+                                    myCube.RegularWideD();
+                                    movesPerformed.Add("d");
                                     movesPerformed.Add(" ");
                                 }
                                 else if (myCube.centres[3].faces[0] == myCube.corners[2].faces[1])
@@ -622,11 +622,11 @@ namespace CubeSimulatorGUI
                                 }
                                 else if (myCube.centres[5].faces[0] == myCube.corners[2].faces[1])
                                 {
-                                    myCube.InverseWideD();
-                                    movesPerformed.Add("d'");
-                                    movesPerformed = InsertCornerU(movesPerformed);
                                     myCube.RegularWideD();
                                     movesPerformed.Add("d");
+                                    movesPerformed = InsertCornerU(movesPerformed);
+                                    myCube.InverseWideD();
+                                    movesPerformed.Add("d'");
                                     movesPerformed.Add(" ");
                                 }
                                 break;
@@ -638,11 +638,11 @@ namespace CubeSimulatorGUI
                                 }
                                 else if (myCube.centres[2].faces[0] == myCube.corners[2].faces[2])
                                 {
-                                    myCube.RegularWideD();
-                                    movesPerformed.Add("d");
-                                    movesPerformed = InsertCornerR(movesPerformed);
                                     myCube.InverseWideD();
                                     movesPerformed.Add("d'");
+                                    movesPerformed = InsertCornerR(movesPerformed);
+                                    myCube.RegularWideD();
+                                    movesPerformed.Add("d");
                                     movesPerformed.Add(" ");
                                 }
                                 else if (myCube.centres[3].faces[0] == myCube.corners[2].faces[2])
@@ -658,11 +658,11 @@ namespace CubeSimulatorGUI
                                 }
                                 else if (myCube.centres[5].faces[0] == myCube.corners[2].faces[1])
                                 {
-                                    myCube.InverseWideD();
-                                    movesPerformed.Add("d'");
-                                    movesPerformed = InsertCornerR(movesPerformed);
                                     myCube.RegularWideD();
                                     movesPerformed.Add("d");
+                                    movesPerformed = InsertCornerR(movesPerformed);
+                                    myCube.InverseWideD();
+                                    movesPerformed.Add("d'");
                                     movesPerformed.Add(" ");
                                 }
                                 break;
@@ -674,11 +674,11 @@ namespace CubeSimulatorGUI
                                 }
                                 else if (myCube.centres[2].faces[0] == myCube.corners[2].faces[0])
                                 {
-                                    myCube.RegularWideD();
-                                    movesPerformed.Add("d");
-                                    movesPerformed = InsertCornerF(movesPerformed);
                                     myCube.InverseWideD();
                                     movesPerformed.Add("d'");
+                                    movesPerformed = InsertCornerF(movesPerformed);
+                                    myCube.RegularWideD();
+                                    movesPerformed.Add("d");
                                     movesPerformed.Add(" ");
                                 }
                                 else if (myCube.centres[3].faces[0] == myCube.corners[2].faces[0])
@@ -694,11 +694,11 @@ namespace CubeSimulatorGUI
                                 }
                                 else if (myCube.centres[5].faces[0] == myCube.corners[2].faces[0])
                                 {
-                                    myCube.InverseWideD();
-                                    movesPerformed.Add("d'");
-                                    movesPerformed = InsertCornerF(movesPerformed);
                                     myCube.RegularWideD();
                                     movesPerformed.Add("d");
+                                    movesPerformed = InsertCornerF(movesPerformed);
+                                    myCube.InverseWideD();
+                                    movesPerformed.Add("d'");
                                     movesPerformed.Add(" ");
                                 }
                                 break;
@@ -820,10 +820,61 @@ namespace CubeSimulatorGUI
         //Method to insert middle edge pieces
         private List<string> InsertMidEdges(List<string> movesPerformed)
         {
-            string sideToInsert;
+            //string sideToInsert;
+            bool cornerInUF;
+            List<int> foundPos = new List<int>();
             for (int i = 0; i < 8; i++)
             {
-
+                cornerInUF = false;
+                if (myCube.edges[i].faces[0] != "Y" && myCube.edges[i].faces[1] != "Y")
+                {
+                    movesPerformed = EdgeToUF(i, movesPerformed);
+                    movesPerformed.Add(" ");
+                    foundPos.Add(i);
+                    i = -1;
+                    cornerInUF = true;
+                }
+                if (cornerInUF)
+                {
+                    if (myCube.edges[2].faces[1] == myCube.centres[1].faces[0])
+                    {
+                        movesPerformed = InsertMEdgeR(movesPerformed);
+                        movesPerformed.Add(" ");
+                    }
+                    else if (myCube.edges[2].faces[1] == myCube.centres[2].faces[0])
+                    {
+                        myCube.InverseWideD();
+                        movesPerformed.Add("d'");
+                        movesPerformed = InsertMEdgeR(movesPerformed);
+                        myCube.RegularWideD();
+                        movesPerformed.Add("d");
+                        movesPerformed.Add(" ");
+                    }
+                    else if (myCube.edges[2].faces[1] == myCube.centres[3].faces[0])
+                    {
+                        myCube.RegularWideD();
+                        myCube.RegularWideD();
+                        movesPerformed.Add("d2");
+                        movesPerformed = InsertMEdgeR(movesPerformed);
+                        myCube.RegularWideD();
+                        myCube.RegularWideD();
+                        movesPerformed.Add("d2");
+                        movesPerformed.Add(" ");
+                    }
+                    else if (myCube.edges[2].faces[1] == myCube.centres[5].faces[0])
+                    {
+                        myCube.RegularWideD();
+                        movesPerformed.Add("d");
+                        movesPerformed = InsertMEdgeR(movesPerformed);
+                        myCube.InverseWideD();
+                        movesPerformed.Add("d'");
+                        movesPerformed.Add(" ");
+                    }
+                }
+                if (foundPos.Count >= 4)
+                {
+                    i = 8;
+                }
             }
             movesPerformed.Add(" ");
             return movesPerformed;
@@ -834,6 +885,14 @@ namespace CubeSimulatorGUI
         {
             movesPerformed = WhiteCross(movesPerformed);
             movesPerformed = InsertCorners(movesPerformed);
+            //TEMP TESTING
+            string temp = "";
+            foreach (string s in movesPerformed)
+            {
+                temp += s;
+            }
+            MessageBox.Show(temp);
+            movesPerformed = InsertMidEdges(movesPerformed);
             return movesPerformed;
         }
     }

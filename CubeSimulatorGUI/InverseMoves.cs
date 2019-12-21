@@ -120,12 +120,12 @@ namespace CubeSimulatorGUI
         static public Edge[] DEdges(Edge[] edges)
         {
             //Rotate D face, starting at DB, anticlockwise (facing D side)
-            Edge temp = edges[11];
-            edges[11] = edges[8];
+            Edge temp = edges[9];
+            edges[9] = edges[8];
             Edge temp2 = edges[10];
             edges[10] = temp;
-            temp = edges[9];
-            edges[9] = temp2;
+            temp = edges[11];
+            edges[11] = temp2;
             edges[8] = temp;
 
             //Return edited array
@@ -136,13 +136,13 @@ namespace CubeSimulatorGUI
         static public Corner[] DCorners(Corner[] corners)
         {
             //Move corners
-            Corner temp = corners[4];
-            corners[4] = corners[5];
-            Corner temp2 = corners[7];
-            corners[7] = temp;
-            temp = corners[6];
-            corners[6] = temp2;
-            corners[5] = temp;
+            Corner temp = corners[5];
+            corners[5] = corners[4];
+            Corner temp2 = corners[6];
+            corners[6] = temp;
+            temp = corners[7];
+            corners[7] = temp2;
+            corners[4] = temp;
 
             //Return array
             return corners;
