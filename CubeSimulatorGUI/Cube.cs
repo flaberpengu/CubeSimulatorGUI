@@ -170,7 +170,7 @@ namespace CubeSimulatorGUI
         public void RegularE()
         {
             edges = Rotations.EEdges(edges);
-            centres = Rotations.ZCentres(centres);
+            centres = Rotations.ECentres(centres);
         }
 
         //Method to do a wide D rotation (D but inc. E)
@@ -178,14 +178,14 @@ namespace CubeSimulatorGUI
         {
             RegularD();
             RegularE();
-            RegularE();
-            RegularE();
         }
 
         //Method to do an inverse D rotation
         public void InverseWideD()
         {
             InverseD();
+            RegularE();
+            RegularE();
             RegularE();
         }
 

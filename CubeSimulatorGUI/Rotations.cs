@@ -117,10 +117,14 @@ namespace CubeSimulatorGUI
         static public Edge[] EEdges(Edge[] edges)
         {
             Edge temp = edges[5];
+            temp.Flip();
+            edges[6].Flip();
             edges[5] = edges[6];
             Edge temp2 = edges[4];
+            temp2.Flip();
             edges[4] = temp;
             temp = edges[7];
+            temp.Flip();
             edges[7] = temp2;
             edges[6] = temp;
 

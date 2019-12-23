@@ -828,24 +828,80 @@ namespace CubeSimulatorGUI
                 cornerInUF = false;
                 if (myCube.edges[i].faces[0] != "Y" && myCube.edges[i].faces[1] != "Y")
                 {
-                    movesPerformed = EdgeToUF(i, movesPerformed);
-                    movesPerformed.Add(" ");
-                    foundPos.Add(i);
-                    i = -1;
-                    cornerInUF = true;
+                    if (i < 4)
+                    {
+                        movesPerformed = EdgeToUF(i, movesPerformed);
+                        movesPerformed.Add(" ");
+                        foundPos.Add(i);
+                        i = -1;
+                        cornerInUF = true;
+                    }
+                    else
+                    {
+                        bool correctPlace = true;
+                        switch (i)
+                        {
+                            case 4:
+                                if (myCube.edges[i].faces[0] != myCube.centres[3].faces[0])
+                                {
+                                    correctPlace = false;
+                                }
+                                continue;
+                            case 5:
+                                if (myCube.edges[i].faces[0] != myCube.centres[1].faces[0])
+                                {
+                                    correctPlace = false;
+                                }
+                                continue;
+                            case 6:
+                                if (myCube.edges[i].faces[0] != myCube.centres[1].faces[0])
+                                {
+                                    correctPlace = false;
+                                }
+                                continue;
+                            case 7:
+                                if (myCube.edges[i].faces[0] != myCube.centres[3].faces[0])
+                                {
+                                    correctPlace = false;
+                                }
+                                continue;
+                        }
+                        if (!correctPlace)
+                        {
+                            movesPerformed = EdgeToUF(i, movesPerformed);
+                            movesPerformed.Add(" ");
+                            foundPos.Add(i);
+                            i = -1;
+                            cornerInUF = true;
+                        }
+                    }
                 }
                 if (cornerInUF)
                 {
                     if (myCube.edges[2].faces[1] == myCube.centres[1].faces[0])
                     {
-                        movesPerformed = InsertMEdgeR(movesPerformed);
+                        if (myCube.edges[2].faces[0] == myCube.centres[2].faces[0])
+                        {
+                            movesPerformed = InsertMEdgeR(movesPerformed);
+                        }
+                        else
+                        {
+                            movesPerformed = InsertMEdgeL(movesPerformed);
+                        }
                         movesPerformed.Add(" ");
                     }
                     else if (myCube.edges[2].faces[1] == myCube.centres[2].faces[0])
                     {
                         myCube.InverseWideD();
                         movesPerformed.Add("d'");
-                        movesPerformed = InsertMEdgeR(movesPerformed);
+                        if (myCube.edges[2].faces[0] == myCube.centres[2].faces[0])
+                        {
+                            movesPerformed = InsertMEdgeR(movesPerformed);
+                        }
+                        else
+                        {
+                            movesPerformed = InsertMEdgeL(movesPerformed);
+                        }
                         myCube.RegularWideD();
                         movesPerformed.Add("d");
                         movesPerformed.Add(" ");
@@ -855,7 +911,14 @@ namespace CubeSimulatorGUI
                         myCube.RegularWideD();
                         myCube.RegularWideD();
                         movesPerformed.Add("d2");
-                        movesPerformed = InsertMEdgeR(movesPerformed);
+                        if (myCube.edges[2].faces[0] == myCube.centres[2].faces[0])
+                        {
+                            movesPerformed = InsertMEdgeR(movesPerformed);
+                        }
+                        else
+                        {
+                            movesPerformed = InsertMEdgeL(movesPerformed);
+                        }
                         myCube.RegularWideD();
                         myCube.RegularWideD();
                         movesPerformed.Add("d2");
@@ -865,7 +928,14 @@ namespace CubeSimulatorGUI
                     {
                         myCube.RegularWideD();
                         movesPerformed.Add("d");
-                        movesPerformed = InsertMEdgeR(movesPerformed);
+                        if (myCube.edges[2].faces[0] == myCube.centres[2].faces[0])
+                        {
+                            movesPerformed = InsertMEdgeR(movesPerformed);
+                        }
+                        else
+                        {
+                            movesPerformed = InsertMEdgeL(movesPerformed);
+                        }
                         myCube.InverseWideD();
                         movesPerformed.Add("d'");
                         movesPerformed.Add(" ");

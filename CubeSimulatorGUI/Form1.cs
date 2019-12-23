@@ -42,7 +42,7 @@ namespace CubeSimulatorGUI
         }
 
         //Method to refine solve algorithm
-        private string[] RefineSolve(string[] solve)
+        /*private string[] RefineSolve(string[] solve)
         {
             string lastMove = "P";
             List<string> newSolveL = new List<string>();
@@ -226,16 +226,113 @@ namespace CubeSimulatorGUI
             }
             string[] newSolveA = newSolveL.ToArray();
             return newSolveA;
+        }*/
+
+        //Method to refine solve algorithm
+        private string[] RefineSolve(string[] solve)
+        {
+            List<string> solveNoSpaces = new List<string>();
+            foreach (string s in solve)
+            {
+                if (s != " ")
+                {
+                    solveNoSpaces.Add(s);
+                }
+            }
+            List<string> newSolve = new List<string>();
+            string[] newSolveA;
+            string currentMove = solve[0];
+            bool setCurrentMove = false;
+            for (int i = 0; i < solveNoSpaces.Count; i++)
+            {
+                if (setCurrentMove)
+                {
+                    currentMove = solveNoSpaces[i];
+                }
+                //MessageBox.Show(currentMove.Length.ToString());
+                if (i < (solveNoSpaces.Count - 1))
+                {
+                    if (currentMove.Substring(0, 1) == solveNoSpaces[i + 1].Substring(0, 1))
+                    {
+                        if (currentMove.Length == 1)
+                        {
+                            if (solveNoSpaces[i + 1].Length == 1)
+                            {
+                                newSolve.Add(currentMove + "2");
+                            }
+                            else
+                            {
+                                if (solveNoSpaces[i + 1].Substring(1, 1) == "2")
+                                {
+                                    newSolve.Add(currentMove + "'");
+                                }
+                            }
+                        }
+                        else
+                        {
+                            if (solveNoSpaces[i + 1].Length == 1)
+                            {
+                                if (currentMove.Substring(1, 1) == "2")
+                                {
+                                    newSolve.Add(solveNoSpaces[i + 1] + "'");
+                                }
+                            }
+                            else
+                            {
+                                if (currentMove.Substring(1, 1) == "2")
+                                {
+                                    if (solveNoSpaces[i + 1].Substring(1, 1) == "'")
+                                    {
+                                        newSolve.Add(currentMove.Substring(0, 1));
+                                    }
+                                }
+                                else
+                                {
+                                    if (solveNoSpaces[i + 1].Substring(1, 1) == "'")
+                                    {
+                                        newSolve.Add(currentMove.Substring(0, 1) + "2");
+                                    }
+                                    else
+                                    {
+                                        newSolve.Add(currentMove.Substring(0, 1));
+                                    }
+                                }
+                            }
+                        }
+                        if (i < (solveNoSpaces.Count - 2))
+                        {
+                            if (newSolve[newSolve.Count - 1].Substring(0, 1) == solveNoSpaces[i + 2].Substring(0, 1))
+                            {
+                                currentMove = newSolve[newSolve.Count - 1];
+                                newSolve.RemoveAt(newSolve.Count - 1);
+                                setCurrentMove = false;
+                            }
+                            else
+                            {
+                                setCurrentMove = true;
+                            }
+                        }
+                        i++;
+                    }
+                    else
+                    {
+                        newSolve.Add(currentMove);
+                        setCurrentMove = true;
+                    }
+                }
+            }
+            newSolveA = newSolve.ToArray();
+            return newSolveA;
         }
 
         //Method to put solve in textbox
         public void UpdateSolve(string[] solve)
         {
             rtbSolve.Clear();
-            //solve = RefineSolve(solve);
+            solve = RefineSolve(solve);
             foreach (string s in solve)
             {
-                rtbSolve.Text += s;
+                rtbSolve.Text += s; //TEST REFINE WORKS
             }
         }
 
@@ -375,6 +472,6 @@ namespace CubeSimulatorGUI
         }
     }
 }
-//COLOURS
-//3D RENDER?
-//CREATE d' MOVE -- CHANGE d' CASE FROM d3 TO d'
+//TODO - COLOURS
+//TODO - 3D RENDER?
+//TODO - READD SPACES TO SOLVE
