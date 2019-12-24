@@ -42,193 +42,7 @@ namespace CubeSimulatorGUI
         }
 
         //Method to refine solve algorithm
-        /*private string[] RefineSolve(string[] solve)
-        {
-            string lastMove = "P";
-            List<string> newSolveL = new List<string>();
-            for (int i = 0; i < solve.Length-1; i++)
-            {
-                if (lastMove.Substring(0, 1) != solve[i].Substring(0, 1))
-                {
-                    if (solve[i].Substring(0, 1) == solve[i + 1].Substring(0, 1))
-                    {
-                        if (solve[i].Length == 1)
-                        {
-                            if (solve[i + 1].Length == 1)
-                            {
-                                string temp = solve[i] + "2";
-                                newSolveL.Add(temp);
-                                i++;
-                                lastMove = temp;
-                            }
-                            else
-                            {
-                                if (solve[i + 1].Substring(1, 1) == "'")
-                                {
-                                    i++;
-                                    lastMove = "P";
-                                }
-                                else
-                                {
-                                    string temp = solve[i] + "'";
-                                    newSolveL.Add(temp);
-                                    i++;
-                                    lastMove = temp;
-                                }
-                            }
-                        }
-                        else
-                        {
-                            if (solve[i + 1].Length == 1)
-                            {
-                                if (solve[i].Substring(1, 1) == "2")
-                                {
-                                    string temp = solve[i] + "'";
-                                    newSolveL.Add(temp);
-                                    i++;
-                                    lastMove = temp;
-                                }
-                                else
-                                {
-                                    i++;
-                                    lastMove = "P";
-                                }
-                            }
-                            else
-                            {
-                                if (solve[i].Substring(1, 1) == "2")
-                                {
-                                    if (solve[i + 1].Substring(1, 1) == "2")
-                                    {
-                                        i++;
-                                        lastMove = "P";
-                                    }
-                                    else
-                                    {
-                                        newSolveL.Add(solve[i].Substring(0, 1));
-                                        i++;
-                                        lastMove = solve[i].Substring(0,1);
-                                    }
-                                }
-                                else
-                                {
-                                    if (solve[i + 1].Substring(1, 1) == "2")
-                                    {
-                                        newSolveL.Add(solve[i].Substring(0, 1));
-                                        i++;
-                                        lastMove = solve[i].Substring(0,1);
-                                    }
-                                    else
-                                    {
-                                        string temp = solve[i].Substring(0, 1) + "2";
-                                        newSolveL.Add(temp);
-                                        i++;
-                                        lastMove = temp;
-                                    }
-                                }
-                            }
-                        }
-                    }
-                    else
-                    {
-                        newSolveL.Add(solve[i]);
-                        lastMove = solve[i];
-                    }
-                }
-                else
-                {
-                    if (lastMove.Length == 1)
-                    {
-                        if (solve[i].Length == 1)
-                        {
-                            newSolveL.RemoveAt(newSolveL.Count - 1);
-                            string temp = solve[i] + "2";
-                            newSolveL.Add(temp);
-                            lastMove = temp;
-                            i++;
-                        }
-                        else
-                        {
-                            if (solve[i].Substring(1,1) == "2")
-                            {
-                                newSolveL.RemoveAt(newSolveL.Count - 1);
-                                string temp = solve[i] + "'";
-                                newSolveL.Add(temp);
-                                lastMove = temp;
-                                i++;
-                            }
-                            else
-                            {
-                                newSolveL.RemoveAt(newSolveL.Count - 1);
-                                lastMove = "P";
-                                i++;
-                            }
-                        }
-                    }
-                    else
-                    {
-                        if (lastMove.Substring(1,1) == "2")
-                        {
-                            if (solve[i].Length == 1)
-                            {
-                                newSolveL.RemoveAt(newSolveL.Count - 1);
-                                string temp = solve[i] + "'";
-                                newSolveL.Add(temp);
-                                lastMove = temp;
-                                i++;
-                            }
-                            else
-                            {
-                                if (solve[i].Substring(1,1) == "2")
-                                {
-                                    newSolveL.RemoveAt(newSolveL.Count - 1);
-                                    lastMove = "P";
-                                    i++;
-                                }
-                                else
-                                {
-                                    newSolveL.RemoveAt(newSolveL.Count - 1);
-                                    newSolveL.Add(solve[i].Substring(0, 1));
-                                    lastMove = solve[i].Substring(0, 1);
-                                    i++;
-                                }
-                            }
-                        }
-                        else
-                        {
-                            if (solve[i].Length == 1)
-                            {
-                                newSolveL.RemoveAt(newSolveL.Count - 1);
-                                lastMove = "P";
-                                i++;
-                            }
-                            else
-                            {
-                                if (solve[i].Substring(1, 1) == "2")
-                                {
-                                    newSolveL.RemoveAt(newSolveL.Count - 1);
-                                    newSolveL.Add(solve[i].Substring(0, 1));
-                                    lastMove = solve[i].Substring(0, 1);
-                                    i++;
-                                }
-                                else
-                                {
-                                    newSolveL.RemoveAt(newSolveL.Count - 1);
-                                    string temp = solve[i] + "2";
-                                    newSolveL.Add(temp);
-                                    lastMove = temp;
-                                    i++;
-                                }
-                            }
-                        }
-                    }
-                }
-            }
-            string[] newSolveA = newSolveL.ToArray();
-            return newSolveA;
-        }*/
-
-        //Method to refine solve algorithm
+        //TODO - SORT THIS, SOMETIMES IT WORKS SOMETIMES NO
         private string[] RefineSolve(string[] solve)
         {
             List<string> solveNoSpaces = new List<string>();
@@ -321,6 +135,10 @@ namespace CubeSimulatorGUI
                     }
                 }
             }
+            for (int i = 4; i < newSolve.Count; i += 4)
+            {
+                newSolve.Insert(i, " ");
+            }
             newSolveA = newSolve.ToArray();
             return newSolveA;
         }
@@ -329,10 +147,10 @@ namespace CubeSimulatorGUI
         public void UpdateSolve(string[] solve)
         {
             rtbSolve.Clear();
-            solve = RefineSolve(solve);
+            //solve = RefineSolve(solve);
             foreach (string s in solve)
             {
-                rtbSolve.Text += s; //TEST REFINE WORKS
+                rtbSolve.Text += s;
             }
         }
 

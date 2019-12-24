@@ -656,7 +656,7 @@ namespace CubeSimulatorGUI
                                     movesPerformed.Add("d2");
                                     movesPerformed.Add(" ");
                                 }
-                                else if (myCube.centres[5].faces[0] == myCube.corners[2].faces[1])
+                                else if (myCube.centres[5].faces[0] == myCube.corners[2].faces[2])
                                 {
                                     myCube.RegularWideD();
                                     movesPerformed.Add("d");
@@ -781,13 +781,13 @@ namespace CubeSimulatorGUI
                     movesPerformed.Add("U'");
                     break;
                 case 4:
-                    myCube.RegularWideD();
-                    movesPerformed.Add("d");
-                    movesPerformed = InsertMEdgeR(movesPerformed);
                     myCube.InverseWideD();
-                    myCube.RegularU();
-                    myCube.RegularU();
                     movesPerformed.Add("d'");
+                    movesPerformed = InsertMEdgeR(movesPerformed);
+                    myCube.RegularWideD();
+                    myCube.RegularU();
+                    myCube.RegularU();
+                    movesPerformed.Add("d");
                     movesPerformed.Add("U2");
                     break;
                 case 5:
@@ -803,13 +803,13 @@ namespace CubeSimulatorGUI
                     movesPerformed.Add("U2");
                     break;
                 case 7:
-                    myCube.InverseWideD();
-                    movesPerformed.Add("d'");
-                    movesPerformed = InsertMEdgeL(movesPerformed);
                     myCube.RegularWideD();
-                    myCube.RegularU();
-                    myCube.RegularU();
                     movesPerformed.Add("d");
+                    movesPerformed = InsertMEdgeL(movesPerformed);
+                    myCube.InverseWideD();
+                    myCube.RegularU();
+                    myCube.RegularU();
+                    movesPerformed.Add("d'");
                     movesPerformed.Add("U2");
                     break;
             }
@@ -846,25 +846,25 @@ namespace CubeSimulatorGUI
                                 {
                                     correctPlace = false;
                                 }
-                                continue;
+                                break;
                             case 5:
                                 if (myCube.edges[i].faces[0] != myCube.centres[1].faces[0])
                                 {
                                     correctPlace = false;
                                 }
-                                continue;
+                                break;
                             case 6:
                                 if (myCube.edges[i].faces[0] != myCube.centres[1].faces[0])
                                 {
                                     correctPlace = false;
                                 }
-                                continue;
+                                break;
                             case 7:
                                 if (myCube.edges[i].faces[0] != myCube.centres[3].faces[0])
                                 {
                                     correctPlace = false;
                                 }
-                                continue;
+                                break;
                         }
                         if (!correctPlace)
                         {
@@ -950,6 +950,167 @@ namespace CubeSimulatorGUI
             return movesPerformed;
         }
 
+        //Method to perform the L cross orientation
+        private List<string> DoYLOrientation(List<string> movesPerformed)
+        {
+            myCube.RegularF();
+            myCube.RegularU();
+            myCube.RegularR();
+            myCube.InverseU();
+            myCube.InverseR();
+            myCube.InverseF();
+            movesPerformed.Add("F");
+            movesPerformed.Add("U");
+            movesPerformed.Add("R");
+            movesPerformed.Add("U'");
+            movesPerformed.Add("R'");
+            movesPerformed.Add("F'");
+            return movesPerformed;
+        }
+
+        //Method to perform the line cross orientation
+        private List<string> DoYLineOrientation(List<string> movesPerformed)
+        {
+            myCube.RegularF();
+            myCube.RegularR();
+            myCube.RegularU();
+            myCube.InverseR();
+            myCube.InverseU();
+            myCube.InverseF();
+            movesPerformed.Add("F");
+            movesPerformed.Add("R");
+            movesPerformed.Add("U");
+            movesPerformed.Add("R'");
+            movesPerformed.Add("U'");
+            movesPerformed.Add("F'");
+            return movesPerformed;
+        }
+
+        //Method to return how many cross faces are yellow
+        private int CheckYCrossFaces()
+        {
+            int numFaces = 0;
+            for (int i = 0; i < 4; i++)
+            {
+                if (myCube.edges[i].faces[0] == "Y")
+                {
+                    numFaces++;
+                }
+            }
+            return numFaces;
+        }
+
+        //Method to get whether 2 yellow faces are line (bool) and return number of U moves applied
+        private int[] CheckIfYLineAndRotateU()
+        {
+            int[] returnVals = new int[2] { 0, 0 };
+            bool isLine = false;
+            for (int i = 0; i < 3; i++)
+            {
+                switch (i)
+                {
+                    case 0:
+                        if (myCube.edges[i].faces[0] == "Y")
+                        {
+                            if (myCube.edges[2].faces[0] == "Y")
+                            {
+                                isLine = true;
+                                myCube.RegularU();
+                                returnVals[1] = 1;
+                                i = 3;
+                            }
+                            else if (myCube.edges[1].faces[0] == "Y")
+                            {
+                                myCube.InverseU();
+                                returnVals[1] = 3;
+                                i = 3;
+                            }
+                            else if (myCube.edges[3].faces[0] == "Y")
+                            {
+                                i = 3;
+                            }
+                        }
+                        continue;
+                    case 1:
+                        if (myCube.edges[i].faces[0] == "Y")
+                        {
+                            if (myCube.edges[3].faces[0] == "Y")
+                            {
+                                isLine = true;
+                                i = 3;
+                            }
+                            else if (myCube.edges[2].faces[0] == "Y")
+                            {
+                                myCube.RegularU();
+                                myCube.RegularU();
+                                returnVals[1] = 2;
+                                i = 3;
+                            }
+                        }
+                        continue;
+                    case 2:
+                        if (myCube.edges[i].faces[0] == "Y")
+                        {
+                            if (myCube.edges[3].faces[0] == "Y")
+                            {
+                                myCube.RegularU();
+                                returnVals[1] = 1;
+                                i = 3;
+                            }
+                        }
+                        continue;
+                }
+            }
+            if (isLine)
+            {
+                returnVals[0] = 1;
+            }
+            else
+            {
+                returnVals[0] = 0;
+            }
+            return returnVals;
+        }
+
+        //Method to do yellow cross
+        private List<string> DoYCross(List<string> movesPerformed)
+        {
+            int numYFaces = CheckYCrossFaces();
+            switch (numYFaces)
+            {
+                case 0:
+                    movesPerformed = DoYLineOrientation(movesPerformed);
+                    movesPerformed = DoYLOrientation(movesPerformed);
+                    break;
+                case 2:
+                    int[] returnedVals = CheckIfYLineAndRotateU();
+                    switch (returnedVals[1])
+                    {
+                        case 1:
+                            movesPerformed.Add("U");
+                            break;
+                        case 2:
+                            movesPerformed.Add("U2");
+                            break;
+                        case 3:
+                            movesPerformed.Add("U'");
+                            break;
+                    }
+                    if (returnedVals[0] == 0)
+                    {
+                        movesPerformed = DoYLOrientation(movesPerformed);
+                    }
+                    else
+                    {
+                        movesPerformed = DoYLineOrientation(movesPerformed);
+                    }
+                    break;
+                case 4:
+                    break;
+            }
+            return movesPerformed;
+        }
+
         //Method to solve cube
         public List<string> SolveCube(List<string> movesPerformed)
         {
@@ -963,6 +1124,7 @@ namespace CubeSimulatorGUI
             }
             MessageBox.Show(temp);
             movesPerformed = InsertMidEdges(movesPerformed);
+            //movesPerformed = DoYCross(movesPerformed);
             return movesPerformed;
         }
     }
