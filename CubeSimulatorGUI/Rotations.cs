@@ -99,7 +99,7 @@ namespace CubeSimulatorGUI
             return corners;
         }
 
-        //Method to rotate centres in an E move (clockwise facing U)
+        /*//Method to rotate centres in an E move (clockwise facing U)
         static public Centre[] ECentres(Centre[] centres)
         {
             Centre temp = centres[2];
@@ -129,6 +129,6 @@ namespace CubeSimulatorGUI
             edges[6] = temp;
 
             return edges;
-        }
+        }*/
     }
 }

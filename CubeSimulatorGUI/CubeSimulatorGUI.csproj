@@ -63,6 +63,7 @@
     <Compile Include="RegularMoves.cs" />
     <Compile Include="Rotations.cs" />
     <Compile Include="Scramble.cs" />
+    <Compile Include="Slices.cs" />
     <Compile Include="Solver.cs" />
     <EmbeddedResource Include="Form1.resx">
       <DependentUpon>Form1.cs</DependentUpon>

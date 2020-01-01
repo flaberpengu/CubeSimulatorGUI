@@ -169,8 +169,8 @@ namespace CubeSimulatorGUI
         //Method to do an E cube slice
         public void RegularE()
         {
-            edges = Rotations.EEdges(edges);
-            centres = Rotations.ECentres(centres);
+            edges = Slices.EEdges(edges);
+            centres = Slices.ECentres(centres);
         }
 
         //Method to do a wide D rotation (D but inc. E)
@@ -180,13 +180,36 @@ namespace CubeSimulatorGUI
             RegularE();
         }
 
-        //Method to do an inverse D rotation
+        //Method to do an inverse wide D rotation
         public void InverseWideD()
         {
             InverseD();
             RegularE();
             RegularE();
             RegularE();
+        }
+
+        //Method to do an M cube slice
+        public void RegularM()
+        {
+            centres = Slices.MCentres(centres);
+            edges = Slices.MEdges(edges);
+        }
+
+        //Method to do a wide R rotation
+        public void RegularWideR()
+        {
+            RegularR();
+            RegularM();
+        }
+
+        //Method to do an inverse wide R rotation
+        public void InverseWideR()
+        {
+            InverseR();
+            RegularM();
+            RegularM();
+            RegularM();
         }
 
         //Method to get and apply a random scramble to the cube
@@ -344,6 +367,16 @@ namespace CubeSimulatorGUI
                      case "d2":
                         RegularWideD();
                         RegularWideD();
+                        continue;
+                     case "r":
+                        RegularWideR();
+                        continue;
+                     case "r'":
+                        InverseWideR();
+                        continue;
+                     case "r2":
+                        RegularWideR();
+                        RegularWideR();
                         continue;
                      case " ":
                         continue;

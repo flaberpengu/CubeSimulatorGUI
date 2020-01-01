@@ -120,6 +120,7 @@ namespace CubeSimulatorGUI
                                 currentMove = newSolve[newSolve.Count - 1];
                                 newSolve.RemoveAt(newSolve.Count - 1);
                                 setCurrentMove = false;
+                                i--;
                             }
                             else
                             {
@@ -134,6 +135,10 @@ namespace CubeSimulatorGUI
                         setCurrentMove = true;
                     }
                 }
+                else
+                {
+                    newSolve.Add(currentMove);
+                }
             }
             for (int i = 4; i < newSolve.Count; i += 4)
             {
@@ -147,7 +152,7 @@ namespace CubeSimulatorGUI
         public void UpdateSolve(string[] solve)
         {
             rtbSolve.Clear();
-            //solve = RefineSolve(solve);
+            solve = RefineSolve(solve); //ISSUE - U's messed up, failed O insertion from UB
             foreach (string s in solve)
             {
                 rtbSolve.Text += s;
@@ -292,4 +297,6 @@ namespace CubeSimulatorGUI
 }
 //TODO - COLOURS
 //TODO - 3D RENDER?
-//TODO - READD SPACES TO SOLVE
+//TODO - READ SPACES TO SOLVE
+//TODO - ADD ROTATIONS? EG U & d' = x (or whatever it is) - reduce move count
+//TODO - OPTIMISE SOLVE AGAIN EG d U d' -> U

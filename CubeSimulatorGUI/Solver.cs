@@ -1000,7 +1000,7 @@ namespace CubeSimulatorGUI
             return numFaces;
         }
 
-        //Method to get whether 2 yellow faces are line (bool) and return number of U moves applied
+        //Method to get whether 2 yellow faces are line (bool) and return number of U moves applied (int[0] = isLine, int[1] = num U moves applied)
         private int[] CheckIfYLineAndRotateU()
         {
             int[] returnVals = new int[2] { 0, 0 };
@@ -1080,6 +1080,9 @@ namespace CubeSimulatorGUI
             {
                 case 0:
                     movesPerformed = DoYLineOrientation(movesPerformed);
+                    myCube.RegularU();
+                    myCube.RegularU();
+                    movesPerformed.Add("U2");
                     movesPerformed = DoYLOrientation(movesPerformed);
                     break;
                 case 2:
@@ -1108,6 +1111,604 @@ namespace CubeSimulatorGUI
                 case 4:
                     break;
             }
+            movesPerformed.Add(" ");
+            return movesPerformed;
+        }
+
+        //Method to perform two headlight case
+        private List<string> PerformTwoHL(List<string> movesPerformed)
+        {
+            myCube.RegularR();
+            myCube.RegularU();
+            myCube.InverseR();
+            myCube.RegularU();
+            myCube.RegularR();
+            myCube.InverseU();
+            myCube.InverseR();
+            myCube.RegularU();
+            myCube.RegularR();
+            myCube.RegularU();
+            myCube.RegularU();
+            myCube.InverseR();
+            movesPerformed.Add("R");
+            movesPerformed.Add("U");
+            movesPerformed.Add("R'");
+            movesPerformed.Add("U");
+            movesPerformed.Add("R");
+            movesPerformed.Add("U'");
+            movesPerformed.Add("R'");
+            movesPerformed.Add("U");
+            movesPerformed.Add("R");
+            movesPerformed.Add("U2");
+            movesPerformed.Add("R'");
+            return movesPerformed;
+        }
+
+        //Method to perform one headlight, one side case
+        private List<string> PerformOneHLOneSide(List<string> movesPerformed)
+        {
+            myCube.RegularR();
+            myCube.RegularU();
+            myCube.RegularU();
+            myCube.RegularR();
+            myCube.RegularR();
+            myCube.InverseU();
+            myCube.RegularR();
+            myCube.RegularR();
+            myCube.InverseU();
+            myCube.RegularR();
+            myCube.RegularR();
+            myCube.RegularU();
+            myCube.RegularU(); 
+            myCube.RegularR();
+            movesPerformed.Add("R");
+            movesPerformed.Add("U2");
+            movesPerformed.Add("R2");
+            movesPerformed.Add("U'");
+            movesPerformed.Add("R2");
+            movesPerformed.Add("U'");
+            movesPerformed.Add("R2");
+            movesPerformed.Add("U2");
+            movesPerformed.Add("R");
+            return movesPerformed;
+        }
+
+        //Method to perform "regular 3" case
+        private List<string> PerformRegularThree(List<string> movesPerformed)
+        {
+            myCube.RegularR();
+            myCube.RegularU();
+            myCube.InverseR();
+            myCube.RegularU();
+            myCube.RegularR();
+            myCube.RegularU();
+            myCube.RegularU();
+            myCube.InverseR();
+            movesPerformed.Add("R");
+            movesPerformed.Add("U");
+            movesPerformed.Add("R'");
+            movesPerformed.Add("U");
+            movesPerformed.Add("R");
+            movesPerformed.Add("U2");
+            movesPerformed.Add("R'");
+            return movesPerformed;
+        }
+
+        //Method to perform "inverse 3" case
+        private List<string> PerformInverseThree(List<string> movesPerformed)
+        {
+            myCube.RegularR();
+            myCube.RegularU();
+            myCube.RegularU();
+            myCube.InverseR();
+            myCube.InverseU();
+            myCube.RegularR();
+            myCube.InverseU();
+            myCube.InverseR();
+            movesPerformed.Add("R");
+            movesPerformed.Add("U2");
+            movesPerformed.Add("R'");
+            movesPerformed.Add("U'");
+            movesPerformed.Add("R");
+            movesPerformed.Add("U'");
+            movesPerformed.Add("R'");
+            return movesPerformed;
+        }
+
+        //Method to perform single headlight case
+        private List<string> PerformOneHL(List<string> movesPerformed)
+        {
+            myCube.RegularR();
+            myCube.RegularR();
+            myCube.RegularD();
+            myCube.InverseR();
+            myCube.RegularU();
+            myCube.RegularU();
+            myCube.RegularR();
+            myCube.InverseD();
+            myCube.InverseR();
+            myCube.RegularU();
+            myCube.RegularU();
+            myCube.InverseR();
+            movesPerformed.Add("R2");
+            movesPerformed.Add("D");
+            movesPerformed.Add("R'");
+            movesPerformed.Add("U2");
+            movesPerformed.Add("R");
+            movesPerformed.Add("D'");
+            movesPerformed.Add("R'");
+            movesPerformed.Add("U2");
+            movesPerformed.Add("R'");
+            return movesPerformed;
+        }
+
+        //Method to perform opposite sides case
+        private List<string> PerformOppSides(List<string> movesPerformed)
+        {
+            myCube.RegularWideR();
+            myCube.RegularU();
+            myCube.InverseR();
+            myCube.InverseU();
+            myCube.InverseWideR();
+            myCube.RegularF();
+            myCube.RegularR();
+            myCube.InverseF();
+            movesPerformed.Add("r");
+            movesPerformed.Add("U");
+            movesPerformed.Add("R'");
+            movesPerformed.Add("U'");
+            movesPerformed.Add("r'");
+            movesPerformed.Add("F");
+            movesPerformed.Add("R");
+            movesPerformed.Add("F'");
+            return movesPerformed;
+        }
+
+        //Method to perform diagonal case
+        private List<string> PerformDiagSides(List<string> movesPerformed)
+        {
+            myCube.InverseF();
+            myCube.RegularWideR();
+            myCube.RegularU();
+            myCube.InverseR();
+            myCube.InverseU();
+            myCube.InverseWideR();
+            myCube.RegularF();
+            myCube.RegularR();
+            movesPerformed.Add("F'");
+            movesPerformed.Add("r");
+            movesPerformed.Add("U");
+            movesPerformed.Add("R'");
+            movesPerformed.Add("U'");
+            movesPerformed.Add("r'");
+            movesPerformed.Add("F");
+            movesPerformed.Add("R");
+            return movesPerformed;
+        }
+
+        //Method to return how many top corner faces are yellow
+        private int CheckYCornerFaces()
+        {
+            int numFaces = 0;
+            for (int i = 0; i < 4; i++)
+            {
+                if (myCube.corners[i].faces[0] == "Y")
+                {
+                    numFaces++;
+                }
+            }
+            return numFaces;
+        }
+
+        //Method to get corner case and number of U moves required to orient correctly (int[0] = case, int[1] = num U moves)
+        private int[] GetCaseAndRotate()
+        {
+            int[] returnVals = new int[2] { 0, 0 };
+            int numYellow = CheckYCornerFaces();
+
+            /*
+             * returnVals[0] meanings:
+             * 0 = case 4 (no move)
+             * 1 = two headlights
+             * 2 = one headlight one side
+             * 3 = regular 3
+             * 4 = inverse 3
+             * 5 = opp sides
+             * 6 = diag sides
+             * 7 = one headlight
+            */
+            switch (numYellow)
+            {
+                case 0:
+                    if (myCube.corners[0].faces[2] == "Y")
+                    {
+                        if (myCube.corners[1].faces[1] == "Y")
+                        {
+                            if (myCube.corners[2].faces[1] == "Y")
+                            {
+                                myCube.InverseU();
+                                returnVals[1] = 3;
+                                returnVals[0] = 2;
+                            }
+                            else if (myCube.corners[2].faces[2] == "Y")
+                            {
+                                myCube.RegularU();
+                                returnVals[1] = 1;
+                                returnVals[0] = 1;
+                            }
+                        }
+                        else if (myCube.corners[3].faces[1] == "Y")
+                        {
+                            myCube.RegularU();
+                            myCube.RegularU();
+                            returnVals[1] = 2;
+                            returnVals[0] = 2;
+                        }
+                    } //DONE ALL FOR CORNERS[0].faces[2] - CHECK FACES[1] AND OTHER CORNERS
+                    else if (myCube.corners[0].faces[1] == "Y")
+                    {
+                        if (myCube.corners[1].faces[1] == "Y")
+                        {
+                            returnVals[1] = 0;
+                            returnVals[0] = 2;
+                        }
+                        else if (myCube.corners[1].faces[2] == "Y")
+                        {
+                            if (myCube.corners[2].faces[1] == "Y")
+                            {
+                                returnVals[1] = 0;
+                                returnVals[0] = 1;
+                            }
+                            else if (myCube.corners[2].faces[2] == "Y")
+                            {
+                                myCube.RegularU();
+                                returnVals[1] = 1;
+                                returnVals[0] = 2;
+                            }
+                        }
+                    }
+                    break;
+                case 1:
+                    if (myCube.corners[0].faces[0] == "Y")
+                    {
+                        if (myCube.corners[1].faces[1] == "Y")
+                        {
+                            myCube.RegularU();
+                            returnVals[1] = 1;
+                            returnVals[0] = 4;
+                        }
+                        else if (myCube.corners[3].faces[2] == "Y")
+                        {
+                            myCube.InverseU();
+                            returnVals[1] = 3;
+                            returnVals[0] = 3;
+                        }
+                    }
+                    else if (myCube.corners[1].faces[0] == "Y")
+                    {
+                        if (myCube.corners[0].faces[2] == "Y")
+                        {
+                            myCube.RegularU();
+                            myCube.RegularU();
+                            returnVals[1] = 2;
+                            returnVals[0] = 3;
+                        }
+                        else if (myCube.corners[2].faces[1] == "Y")
+                        {
+                            returnVals[1] = 0;
+                            returnVals[0] = 4;
+                        }
+                    }
+                    else if (myCube.corners[2].faces[0] == "Y")
+                    {
+                        if (myCube.corners[1].faces[2] == "Y")
+                        {
+                            myCube.RegularU();
+                            returnVals[1] = 1;
+                            returnVals[0] = 3;
+                        }
+                        else if (myCube.corners[3].faces[1] == "Y")
+                        {
+                            myCube.InverseU();
+                            returnVals[1] = 3;
+                            returnVals[0] = 4;
+                        }
+                    }
+                    else if (myCube.corners[3].faces[0] == "Y")
+                    {
+                        if (myCube.corners[0].faces[1] == "Y")
+                        {
+                            myCube.RegularU();
+                            myCube.RegularU();
+                            returnVals[1] = 2;
+                            returnVals[0] = 4;
+                        }
+                        else if (myCube.corners[2].faces[2] == "Y")
+                        {
+                            returnVals[1] = 0;
+                            returnVals[0] = 3;
+                        }
+                    }
+                    break;
+                case 2:
+                    if (myCube.corners[0].faces[0] == "Y")
+                    {
+                        if (myCube.corners[1].faces[0] == "Y")
+                        {
+                            if (myCube.corners[2].faces[2] == "Y")
+                            {
+                                returnVals[1] = 0;
+                                returnVals[0] = 7;
+                            }
+                            else if (myCube.corners[2].faces[1] == "Y")
+                            {
+                                myCube.RegularU();
+                                returnVals[1] = 1;
+                                returnVals[0] = 5;
+                            }
+                        }
+                        else if (myCube.corners[2].faces[0] == "Y")
+                        {
+                            if (myCube.corners[1].faces[1] == "Y")
+                            {
+                                myCube.InverseU();
+                                returnVals[1] = 3;
+                            }
+                            else if (myCube.corners[1].faces[2] == "Y")
+                            {
+                                myCube.RegularU();
+                                returnVals[1] = 1;
+                            }
+                            returnVals[0] = 6;
+                        }
+                        else if (myCube.corners[3].faces[0] == "Y")
+                        {
+                            if (myCube.corners[1].faces[1] == "Y")
+                            {
+                                myCube.RegularU();
+                                myCube.RegularU();
+                                returnVals[1] = 2;
+                                returnVals[0] = 5;
+                            }
+                            else if (myCube.corners[1].faces[2] == "Y")
+                            {
+                                myCube.RegularU();
+                                returnVals[1] = 1;
+                                returnVals[0] = 7;
+                            }
+                        }
+                    }
+                    else if (myCube.corners[1].faces[0] == "Y")
+                    {
+                        if (myCube.corners[2].faces[0] == "Y")
+                        {
+                            if (myCube.corners[0].faces[1] == "Y")
+                            {
+                                myCube.InverseU();
+                                returnVals[1] = 3;
+                                returnVals[0] = 7;
+                            }
+                            else if (myCube.corners[0].faces[2] == "Y")
+                            {
+                                returnVals[1] = 0;
+                                returnVals[0] = 5;
+                            }
+                        }
+                        else if (myCube.corners[3].faces[0] == "Y")
+                        {
+                            if (myCube.corners[0].faces[1] == "Y")
+                            {
+                                returnVals[1] = 0;
+                            }
+                            else if (myCube.corners[0].faces[2] == "Y")
+                            {
+                                myCube.RegularU();
+                                myCube.RegularU();
+                                returnVals[1] = 2;
+                            }
+                            returnVals[0] = 6;
+                        }
+                    }
+                    else if (myCube.corners[2].faces[0] == "Y")
+                    {
+                        if (myCube.corners[0].faces[1] == "Y")
+                        {
+                            myCube.InverseU();
+                            returnVals[1] = 3;
+                            returnVals[0] = 5;
+                        }
+                        else if (myCube.corners[0].faces[2] == "Y")
+                        {
+                            myCube.RegularU();
+                            myCube.RegularU();
+                            returnVals[1] = 2;
+                            returnVals[0] = 7;
+                        }
+                    }
+                    break;
+                case 4:
+                    returnVals[1] = 0;
+                    returnVals[0] = 0;
+                    break;
+            }
+            return returnVals;
+        }
+
+        //Method to perform yellow corner orientation
+        private List<string> DoYCorners(List<string> movesPerformed)
+        {
+            /*
+             * returnVals[0] meanings:
+             * 0 = case 4 (no move)
+             * 1 = two headlights
+             * 2 = one headlight one side
+             * 3 = regular 3
+             * 4 = inverse 3
+             * 5 = opp sides
+             * 6 = diag sides
+             * 7 = one headlight
+            */
+            int[] returnVals = GetCaseAndRotate();
+            switch (returnVals[1])
+            {
+                case 0:
+                    break;
+                case 1:
+                    movesPerformed.Add("U");
+                    break;
+                case 2:
+                    movesPerformed.Add("U2");
+                    break;
+                case 3:
+                    movesPerformed.Add("U'");
+                    break;
+            }
+            switch (returnVals[0])
+            {
+                case 0:
+                    break;
+                case 1:
+                    movesPerformed = PerformTwoHL(movesPerformed);
+                    break;
+                case 2:
+                    movesPerformed = PerformOneHLOneSide(movesPerformed);
+                    break;
+                case 3:
+                    movesPerformed = PerformRegularThree(movesPerformed);
+                    break;
+                case 4:
+                    movesPerformed = PerformInverseThree(movesPerformed);
+                    break;
+                case 5:
+                    movesPerformed = PerformOppSides(movesPerformed);
+                    break;
+                case 6:
+                    movesPerformed = PerformDiagSides(movesPerformed);
+                    break;
+                case 7:
+                    movesPerformed = PerformOneHL(movesPerformed);
+                    break;
+            }
+            return movesPerformed;
+        }
+
+        //Method to perform headlights permutation
+        private List<string> PermutateCHeadlights(List<string> movesPerformed)
+        {
+            myCube.RegularR();
+            myCube.RegularU();
+            myCube.InverseR();
+            myCube.InverseU();
+            myCube.InverseR();
+            myCube.RegularF();
+            myCube.RegularR();
+            myCube.RegularR();
+            myCube.InverseU();
+            myCube.InverseR();
+            myCube.InverseU();
+            myCube.RegularR();
+            myCube.RegularU();
+            myCube.InverseR();
+            myCube.InverseF();
+            movesPerformed.Add("R");
+            movesPerformed.Add("U");
+            movesPerformed.Add("R'");
+            movesPerformed.Add("U'");
+            movesPerformed.Add("R'");
+            movesPerformed.Add("F");
+            movesPerformed.Add("R2");
+            movesPerformed.Add("U'");
+            movesPerformed.Add("R'");
+            movesPerformed.Add("U'");
+            movesPerformed.Add("R");
+            movesPerformed.Add("U");
+            movesPerformed.Add("R'");
+            movesPerformed.Add("F'");
+            return movesPerformed;
+        }
+
+        //Method to perform diagonal permutation
+        private List<string> PermutateCDiagonals(List<string> movesPerformed)
+        {
+            //R'UL'U2RU'L x2
+            for (int i = 0; i < 2; i++)
+            {
+                myCube.InverseR();
+                myCube.RegularU();
+                myCube.InverseL();
+                myCube.RegularU();
+                myCube.RegularU();
+                myCube.RegularR();
+                myCube.InverseU();
+                myCube.RegularL();
+                movesPerformed.Add("R'");
+                movesPerformed.Add("U");
+                movesPerformed.Add("L'");
+                movesPerformed.Add("U2");
+                movesPerformed.Add("R");
+                movesPerformed.Add("U'");
+                movesPerformed.Add("L");
+            }
+            return movesPerformed;
+        }
+
+        //Method to check if case is headlights -- int[0] = true/false, int[1] = num U moves
+        private int[] CheckIfHLAndRotate()
+        {
+            int[] returnVals = new int[2] { 0, 0 };
+            if (myCube.corners[0].faces[2] == myCube.corners[1].faces[1])
+            {
+                myCube.InverseU();
+                returnVals[0] = 1;
+                returnVals[1] = 3;
+            }
+            else if (myCube.corners[1].faces[2] == myCube.corners[2].faces[1])
+            {
+                myCube.RegularU();
+                myCube.RegularU();
+                returnVals[0] = 1;
+                returnVals[1] = 2;
+            }
+            else if (myCube.corners[2].faces[2] == myCube.corners[3].faces[1])
+            {
+                myCube.RegularU();
+                returnVals[0] = 1;
+                returnVals[1] = 1;
+            }
+            else if (myCube.corners[3].faces[2] == myCube.corners[0].faces[1])
+            {
+                returnVals[0] = 1;
+            }
+            return returnVals;
+        }
+
+        //Method to perform yellow corner permutation
+        private List<string> DoYCornerPerm(List<string> movesPerformed)
+        {
+            int[] returnVals = CheckIfHLAndRotate();
+            switch (returnVals[1])
+            {
+                case 0:
+                    break;
+                case 1:
+                    movesPerformed.Add("U");
+                    break;
+                case 2:
+                    movesPerformed.Add("U2");
+                    break;
+                case 3:
+                    movesPerformed.Add("U'");
+                    break;
+            }
+            switch (returnVals[0])
+            {
+                case 0:
+                    movesPerformed = PermutateCDiagonals(movesPerformed);
+                    break;
+                case 1:
+                    movesPerformed = PermutateCHeadlights(movesPerformed);
+                    break;
+            }
             return movesPerformed;
         }
 
@@ -1117,18 +1718,17 @@ namespace CubeSimulatorGUI
             movesPerformed = WhiteCross(movesPerformed);
             movesPerformed = InsertCorners(movesPerformed);
             //TEMP TESTING
-            string temp = "";
+            /*string temp = "";
             foreach (string s in movesPerformed)
             {
                 temp += s;
             }
-            MessageBox.Show(temp);
+            MessageBox.Show(temp);*/
             movesPerformed = InsertMidEdges(movesPerformed);
-            //movesPerformed = DoYCross(movesPerformed);
+            movesPerformed = DoYCross(movesPerformed);
+            movesPerformed = DoYCorners(movesPerformed);
+            movesPerformed = DoYCornerPerm(movesPerformed);
             return movesPerformed;
         }
     }
 }
-//TODO - LINE UP D AND E
-//TODO - INSERT MEDGES
-//TODO - WHITE CROSS - CHECK BOTTOM FACE IS WHITE AND IS CORRECT - CURRENTLY IGNORES IF INCORRECT PLACE
