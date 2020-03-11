@@ -196,6 +196,17 @@ namespace CubeSimulatorGUI
             edges = Slices.MEdges(edges);
         }
 
+        //Method to do an inverse M cube slice
+        public void InverseM()
+        {
+            centres = Slices.MCentres(centres);
+            centres = Slices.MCentres(centres);
+            centres = Slices.MCentres(centres);
+            edges = Slices.MEdges(edges);
+            edges = Slices.MEdges(edges);
+            edges = Slices.MEdges(edges);
+        }
+
         //Method to do a wide R rotation
         public void RegularWideR()
         {
@@ -379,6 +390,16 @@ namespace CubeSimulatorGUI
                         RegularWideR();
                         continue;
                      case " ":
+                        continue;
+                     case "M":
+                        RegularM();
+                        continue;
+                     case "M2":
+                        RegularM();
+                        RegularM();
+                        continue;
+                     case "M'":
+                        InverseM();
                         continue;
                 }
             }

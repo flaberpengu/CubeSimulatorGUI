@@ -1712,6 +1712,251 @@ namespace CubeSimulatorGUI
             return movesPerformed;
         }
 
+        //Method to perform Ua permutation
+        private List<string> DoUaPermutation(List<string> movesPerformed)
+        {
+            myCube.RegularR();
+            myCube.InverseU();
+            myCube.RegularR();
+            myCube.RegularU();
+            myCube.RegularR();
+            myCube.RegularU();
+            myCube.RegularR();
+            myCube.InverseU();
+            myCube.InverseR();
+            myCube.InverseU();
+            myCube.RegularR();
+            myCube.RegularR();
+            movesPerformed.Add("R");
+            movesPerformed.Add("U'");
+            movesPerformed.Add("R");
+            movesPerformed.Add("U");
+            movesPerformed.Add("R");
+            movesPerformed.Add("U");
+            movesPerformed.Add("R");
+            movesPerformed.Add("U'");
+            movesPerformed.Add("R'");
+            movesPerformed.Add("U'");
+            movesPerformed.Add("R2");
+            return movesPerformed;
+        }
+
+        //Method to perform Ub permutation
+        private List<string> DoUbPermutation(List<string> movesPerformed)
+        {
+            myCube.RegularR();
+            myCube.RegularR();
+            myCube.RegularU();
+            myCube.RegularR();
+            myCube.RegularU();
+            myCube.InverseR();
+            myCube.InverseU();
+            myCube.InverseR();
+            myCube.InverseU();
+            myCube.InverseR();
+            myCube.RegularU();
+            myCube.InverseR();
+            movesPerformed.Add("R2");
+            movesPerformed.Add("U");
+            movesPerformed.Add("R");
+            movesPerformed.Add("U");
+            movesPerformed.Add("R'");
+            movesPerformed.Add("U'");
+            movesPerformed.Add("R'");
+            movesPerformed.Add("U'");
+            movesPerformed.Add("R'");
+            movesPerformed.Add("U");
+            movesPerformed.Add("R'");
+            return movesPerformed;
+        }
+
+        //Method to do Z permutation
+        private List<string> DoZPermutation(List<string> movesPerformed)
+        {
+            for (int i = 0; i < 2; i++)
+            {
+                myCube.RegularM();
+                myCube.RegularM();
+                myCube.RegularU();
+                movesPerformed.Add("M2");
+                movesPerformed.Add("U");
+            }
+            myCube.InverseM();
+            myCube.RegularU();
+            myCube.RegularU();
+            myCube.RegularM();
+            myCube.RegularM();
+            myCube.RegularU();
+            myCube.RegularU();
+            myCube.InverseM();
+            movesPerformed.Add("M'");
+            movesPerformed.Add("U2");
+            movesPerformed.Add("M2");
+            movesPerformed.Add("U2");
+            movesPerformed.Add("M'");
+            return movesPerformed;
+        }
+
+        //Method to do H permutation
+        private List<string> DoHPermutation(List<string> movesPerformed)
+        {
+            for (int i = 0; i < 2; i++)
+            {
+                myCube.RegularM();
+                myCube.RegularM();
+                myCube.RegularU();
+                myCube.RegularM();
+                myCube.RegularM();
+                movesPerformed.Add("M2");
+                movesPerformed.Add("U");
+                movesPerformed.Add("M2");
+                if (i % 2 == 0)
+                {
+                    myCube.RegularU();
+                    myCube.RegularU();
+                    movesPerformed.Add("U2");
+                }
+            }
+            return movesPerformed;
+        }
+
+        //Method to find the permutation required, and return the amount of U moves performed
+        private int[] FindPermutationDoUMoves()
+        {
+            //ReturnValues: [0] = no. U moves performed, [1] = perm case (0 = Ua, 1 = Ub, 2 = Z, 3 = H, 4 = None)
+            int[] returnValues = new int[2] { 0, 0 };
+            if (myCube.corners[0].faces[2] == myCube.corners[1].faces[1])
+            {
+                if (myCube.corners[0].faces[2] == myCube.edges[0].faces[1])
+                {
+                    if (myCube.corners[1].faces[2] == myCube.edges[1].faces[1])
+                    {
+                        returnValues[1] = 4;
+                    }
+                    else
+                    {
+                        if (myCube.edges[2].faces[1] == myCube.corners[1].faces[2])
+                        {
+                            returnValues[1] = 0;
+                        }
+                        else
+                        {
+                            returnValues[1] = 1;
+                        }
+                    }
+                }
+                else if (myCube.corners[1].faces[2] == myCube.edges[1].faces[1])
+                {
+                    returnValues[0] = 3;
+                    if (myCube.edges[3].faces[1] == myCube.corners[2].faces[2])
+                    {
+                        returnValues[1] = 0;
+                    }
+                    else
+                    {
+                        returnValues[1] = 1;
+                    }
+                }
+                else if (myCube.corners[2].faces[2] == myCube.edges[2].faces[1])
+                {
+                    returnValues[0] = 2;
+                    if (myCube.edges[0].faces[1] == myCube.corners[0].faces[1])
+                    {
+                        returnValues[0] = 0;
+                    }
+                    else
+                    {
+                        returnValues[0] = 1;
+                    }
+                }
+                else if (myCube.corners[0].faces[1] == myCube.edges[3].faces[1])
+                {
+                    returnValues[0] = 1;
+                    if (myCube.edges[1].faces[1] == myCube.corners[0].faces[2])
+                    {
+                        returnValues[0] = 0;
+                    }
+                    else
+                    {
+                        returnValues[0] = 1;
+                    }
+                }
+                else
+                {
+                    if (myCube.edges[0].faces[1] == myCube.corners[2].faces[2])
+                    {
+                        returnValues[1] = 3;
+                    }
+                    else
+                    {
+                        returnValues[1] = 2;
+                    }
+                }
+            }
+            return returnValues;
+        }
+
+        //Method to do AUF (aligning the final layer correctly)
+        private List<string> DoAUF(List<string> movesPerformed)
+        {
+            if (myCube.edges[0].faces[1] == myCube.centres[1].faces[0])
+            {
+                myCube.RegularU();
+                myCube.RegularU();
+                movesPerformed.Add("U2");
+            }
+            else if (myCube.edges[0].faces[1] == myCube.centres[2].faces[0])
+            {
+                myCube.RegularU();
+                movesPerformed.Add("U");
+            }
+            else if (myCube.edges[0].faces[1] == myCube.centres[5].faces[0])
+            {
+                myCube.InverseU();
+                movesPerformed.Add("U'");
+            }
+            return movesPerformed;
+        }
+
+        //Method to perform yellow edge permutation
+        private List<string> DoYEdgePerm(List<string> movesPerformed)
+        {
+            int[] returnVals = FindPermutationDoUMoves();
+            switch (returnVals[0])
+            {
+                case 1:
+                    myCube.RegularU();
+                    movesPerformed.Add("U");
+                    break;
+                case 2:
+                    myCube.RegularU();
+                    myCube.RegularU();
+                    movesPerformed.Add("U2");
+                    break;
+                case 3:
+                    myCube.InverseU();
+                    movesPerformed.Add("U'");
+                    break;
+            }
+            switch (returnVals[1])
+            {
+                case 0:
+                    movesPerformed = DoUaPermutation(movesPerformed);
+                    break;
+                case 1:
+                    movesPerformed = DoUbPermutation(movesPerformed);
+                    break;
+                case 2:
+                    movesPerformed = DoZPermutation(movesPerformed);
+                    break;
+                case 3:
+                    movesPerformed = DoHPermutation(movesPerformed);
+                    break;
+            }
+            movesPerformed = DoAUF(movesPerformed);
+            return movesPerformed;
+        }
+
         //Method to solve cube
         public List<string> SolveCube(List<string> movesPerformed)
         {
@@ -1727,8 +1972,27 @@ namespace CubeSimulatorGUI
             movesPerformed = InsertMidEdges(movesPerformed);
             movesPerformed = DoYCross(movesPerformed);
             movesPerformed = DoYCorners(movesPerformed);
+            //TEMP TESTING
+            string temp = "";
+            foreach (string s in movesPerformed)
+            {
+                temp += s;
+            }
+            MessageBox.Show(temp);
             movesPerformed = DoYCornerPerm(movesPerformed);
+            //TEMP TESTING
+            /*
+            string temp = "";
+            foreach (string s in movesPerformed)
+            {
+                temp += s;
+            }
+            MessageBox.Show(temp);
+            */
+            movesPerformed = DoYEdgePerm(movesPerformed);
             return movesPerformed;
         }
     }
 }
+
+//ADD CORNER ORIENTS/PERMS? - SEE CUBE ON DESK
