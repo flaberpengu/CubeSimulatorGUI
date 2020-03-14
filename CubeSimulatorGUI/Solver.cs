@@ -1681,6 +1681,7 @@ namespace CubeSimulatorGUI
             }
             return returnVals;
         }
+        //TODO - missing diag case?
 
         //Method to perform yellow corner permutation
         private List<string> DoYCornerPerm(List<string> movesPerformed)
@@ -1888,13 +1889,18 @@ namespace CubeSimulatorGUI
                         returnValues[1] = 3;
                     }
                     else
-                    {
+                    {//ISSUE
                         returnValues[1] = 2;
+                        if (myCube.corners[3].faces[1] == myCube.edges[3].faces[1])
+                        {
+                            returnValues[0] = 3;
+                        }
                     }
                 }
             }
             return returnValues;
         }
+        //TODO - Z PERM DOESNT ROTATE PROPERLY - DONE
 
         //Method to do AUF (aligning the final layer correctly)
         private List<string> DoAUF(List<string> movesPerformed)
